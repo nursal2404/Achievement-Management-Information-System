@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('dashboard/head')
-<title>Manajemen Data User</title>
 
+
+<title>Manajemen Prestasi</title>
 <body id="page-top">
   <div id="wrapper">
     <!-- Sidebar -->
@@ -11,7 +12,7 @@
         <div class="sidebar-brand-text mx-3">SI Manajemen Prestasi</div>
       </a>
       <hr class="sidebar-divider my-0">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="/admin">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -20,16 +21,17 @@
       <div class="sidebar-heading">
         Menu
       </div>
-      <li class="nav-item active">
-        <a class="nav-link collapsed" href="/data_user"  
-          >
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/data_user" 
+          aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="fa-solid fa-users"></i>
           <span>Manajemen Data User</span>
         </a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="prestasi" 
+      <li class="nav-item active">
+        <a class="nav-link collapsed" href="#" 
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="fa-solid fa-trophy"></i>
           <span>Manajemen Prestasi</span>
@@ -45,27 +47,26 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="tambahkan_berita" 
+        <a class="nav-link collapsed" href="/tambahkan_berita" 
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="fa-solid fa-newspaper"></i>
           <span>Manajemen Berita</span>
         </a>
       </li>
-
+        
     </ul>
-
+            
 @include('dashboard/header_admin')
-
-        <div class="container-fluid">
+<div class="container-fluid">
           <div class="text-center mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Manajemen Data User</h1>
+            <h1 class="h3 mb-0 text-gray-800">Manajemen Prestasi</h1>
           </div>
 
           <div class="row mb-3">
             <div class="col-lg-12 mb-4">
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <a href="/tambah_user"button type="button" class="btn btn-success">Tambah</button>
+                  <a href="/add_prestasi"button type="button" class="btn btn-success">Tambah</button>
                     <i class="fa-solid fa-user-plus"></i>
                   </a>
                     @if($message = Session :: get('sukses'))
@@ -80,39 +81,51 @@
                       <tr>
                       <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Username</th>
-                        <th scope="col" class="text-center">Password</th>
-                        <th scope="col">Level</th>
+                        <th scope="col">Nama Mahasiswa</th>
+                        <th scope="col">NPM</th>
+                        <th scope="col">Jurusan</th>
+                        <th scope="col">Prestasi</th>
+                        <th scope="col">Nama Lomba</th>
+                        <th scope="col">Penyelenggara</th>
+                        <th scope="col">Tingkat</th>
+                        <th scope="col">Tanggal</th>
                         <th scope="col" class="text-center">Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @php
-                      $no=1;
-                      @endphp
-                      @foreach ($items as $index =>$item)
+                      @foreach ($kejuaraan as $item)
                       <tr>
-                        <th scope="row">{{ $index + $items->firstItem() }}</th>
+                        <th scope="row">{{ $loop->index + 1 }}</th>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->username }}</td>
-                        <td>{{ $item->password }}</td>
-                        <td>{{ $item->level }}</td>
+                        <td>{{ $item->npm }}</td>
+                        <td>{{ $item->jurusan }}</td>
+                        <td>{{ $item->juara }}</td>
+                        <td>{{ $item->lomba }}</td>
+                        <td>{{ $item->penyelenggara }}</td>
+                        <td>{{ $item->tingkat }}</td>
+                        <td>{{ $item->tanggal }}</td>
                         <td>
                           <div class="btn-group">
-                            <a href="edit_user/{{ $item->id }}"><button type="button" class="btn btn-warning mr-2">Edit</button></a>
-                            <a href="/admin/delete/{{ $item->id }}"><button type="button" class="btn btn-danger">Hapus</button></a>
+                            <a href="edit_prestasi/{{ $item->id }}"><button type="button" class="btn btn-warning mr-2">Edit</button></a>
+                            <a href="prestasi/delete/{{ $item->id }}"><button type="button" class="btn btn-danger">Hapus</button></a>
                           </div>
                         </td>
                         @endforeach
                       </tr>
                     </tbody>
                   </table>
-                  {{ $items->links() }}
+                  
               </div>
             </div>
           </div>
         </div>
+
+
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Scroll to top -->
   <a class="scroll-to-top rounded" href="#page-top">

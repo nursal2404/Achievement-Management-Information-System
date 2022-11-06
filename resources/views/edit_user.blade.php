@@ -2,7 +2,7 @@
 <html lang="en">
 <title>Tambahkan User</title>
 @include('dashboard/head')
-
+@include('dashboard/script')
 <body id="page-top">
   <div id="wrapper">
     <!-- Sidebar -->
@@ -20,11 +20,11 @@
       <div class="sidebar-heading">
         Menu
       </div>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link collapsed" href="/data_user"  
           >
           <i class="fa-solid fa-users"></i>
-          <span class="page-link active">Manajemen Data User</span>
+          <span>Manajemen Data User</span>
         </a>
       </li>
 
@@ -59,7 +59,7 @@
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="text-center mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Tambahkan User</h1>
+            <h1 class="h3 mb-0 text-gray-800">Edit Data User</h1>
           </div>
 
           <div class="row mb-3">
@@ -70,26 +70,26 @@
         <div class="col-lg-12 mb-4">
         <div class="card">
           <div class="card-body">
-              <form action="proses_tambah" method="POST">
+              <form action="/proses_tambah" method="POST">
                 @csrf
                 <div class="mb-3">
-                  <label class="form-label">Nama</label>
-                  <input type="text" name="name" class="form-control">
+                  <label for="exampleInputEmail1" class="form-label">Nama</label>
+                  <input type="text" name="name" class="form-control" >
                 </div>
                 
                 <div class="mb-3">
-                  <label class="form-label">Username</label>
-                  <input type="text" name="username" class="form-control">
+                  <label for="exampleInputEmail1" class="form-label">Username</label>
+                  <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
 
                 <div class="mb-3">
-                  <label class="form-label">Password</label>
-                  <input type="password" name="password" class="form-control" >
+                  <label for="exampleInputEmail1" class="form-label">Password</label>
+                  <input type="password" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
 
                 <div class="mb-3">
-                  <label  class="form-label">Role</label>
-                  <select class="form-select" name="level">
+                  <label for="exampleInputLevel" class="form-label">Role</label>
+                  <select class="form-select" name="level" ria-label="Default select example">
                     <option selected>Pilih role</option>
                     <option value="admin">Admin</option>
                     <option value="user">User</option>
@@ -110,6 +110,6 @@
     </div>
   </div>
 
- @include('dashboard/script')
 
+  </body>
 </html>

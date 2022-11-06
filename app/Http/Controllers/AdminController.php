@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+
 
 class AdminController extends Controller
 {
@@ -32,10 +33,10 @@ class AdminController extends Controller
         return redirect()->route('admin')->with('sukses','Data Berhasil Ditambahkan');;
     }
 
-    public function edit($id)
+    public function edit()
     {
-
-        return redirect()->back();
+        $item = User::all();
+        return view('edit_user', compact('item'));
     }
 
     public function delete($id){
@@ -45,8 +46,19 @@ class AdminController extends Controller
     }
 
     public function manajemen_user(){
-        $items = User::all();
+        $items = User::paginate(5);
         return view('data_user', compact(['items']));
     }
+
+    public function upload_file(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'username' => 'required',
+            'password' => 'required|min:6|max:10',
+            'level' => '',
+        ]);
+    }
+
+    
 }
 
