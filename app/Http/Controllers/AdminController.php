@@ -11,8 +11,25 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $items = User::all();
-        return view('admin', compact(['items']));
+        return view('admin');
+    }
+
+    public function manajemen_user(Request $request)
+    {
+        if($request->has('search')){
+            $items = User::where('username','LIKE','%'.$request->search.'%')->paginate(5);
+        }
+        else{
+            $items = User::sortable()->paginate(5);
+            return view('data_user', compact(['items']));
+        }
+                
+        $items = User::sortable()->paginate(5);
+        return view('data_user', compact(['items']));
+    }
+
+    public function tambah_user(){
+        return view('tambah_user');
     }
 
     public function proses_tambah(Request $request){
@@ -30,35 +47,33 @@ class AdminController extends Controller
             'level' => $request->level,
         ]);
 
-        return redirect()->route('admin')->with('sukses','Data Berhasil Ditambahkan');;
+        return redirect()->route('data_user')->with('sukses','Data Berhasil Ditambahkan');;
     }
 
-    public function edit()
+    public function edit($id)
     {
-        $item = User::all();
-        return view('edit_user', compact('item'));
+        $items = User::find($id);
+        return view('edit_user', compact('items'));
+    }
+
+    public function proses_edit(Request $request, $id)
+    {
+        $items = User::find($id);
+        $items->update($request->all());
+        return redirect()->route('data_user')->with('sukses','Data Berhasil DiEdit');
     }
 
     public function delete($id){
         $data = User::find($id);
         $data->delete();
-        return redirect()->route('admin')->with('sukses','Data Berhasil Dihapus');
+        return redirect()->route('data_user')->with('sukses','Data Berhasil Dihapus');
     }
 
-    public function manajemen_user(){
-        $items = User::paginate(5);
-        return view('data_user', compact(['items']));
+    public function search(Request $request)
+    {
+        $items = $request->search;
+        $items = User::where('username', 'like', "%" . $items . "%")->paginate(5);
+        return view('data_user', compact('items'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
-
-    public function upload_file(Request $request){
-        $this->validate($request, [
-            'name' => 'required',
-            'username' => 'required',
-            'password' => 'required|min:6|max:10',
-            'level' => '',
-        ]);
-    }
-
-    
 }
 

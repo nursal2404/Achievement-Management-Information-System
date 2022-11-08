@@ -23,18 +23,6 @@ class AkunSeeder extends Seeder
                 'password'=> bcrypt('123456'),
             ],
 
-            [
-                'username' => 'usertesting',
-                'name'=>'User Testing',
-                'level'=>'user',
-                'password'=> bcrypt('123456'),
-            ],
-            [
-                'username' => 'admin2',
-                'name'=>'Admin 2',
-                'level'=>'admin',
-                'password'=> bcrypt('123456'),
-            ],
         ];
 
         foreach ($user as $key => $value) {

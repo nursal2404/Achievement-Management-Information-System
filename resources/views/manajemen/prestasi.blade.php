@@ -61,7 +61,6 @@
           <div class="text-center mb-4">
             <h1 class="h3 mb-0 text-gray-800">Manajemen Prestasi</h1>
           </div>
-
           <div class="row mb-3">
             <div class="col-lg-12 mb-4">
               <div class="card">
@@ -69,63 +68,39 @@
                   <a href="/add_prestasi"button type="button" class="btn btn-success">Tambah</button>
                     <i class="fa-solid fa-user-plus"></i>
                   </a>
-                    @if($message = Session :: get('sukses'))
-                      <div class="alert alert-success" role="alert">
-                        {{$message}}
+
+                  <div class="card">
+                    <form action="search" method="get" class="form-inline">
+                      <div class="input-group">
+                        <input type="search" name="search" class="form-control bg-light border-1 small" 
+                          placeholder="Pencarian" style="border-color: #3f51b5;"/>
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                          </button>
+                        </div>
                       </div>
-                    @endif
+                    </form>
+                  </div>
+
+
                 </div>
-                <div class="table-responsive">
-                  <table class="table table-bordered">
-                    <thead class="table-primary">
-                      <tr>
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama Mahasiswa</th>
-                        <th scope="col">NPM</th>
-                        <th scope="col">Jurusan</th>
-                        <th scope="col">Prestasi</th>
-                        <th scope="col">Nama Lomba</th>
-                        <th scope="col">Penyelenggara</th>
-                        <th scope="col">Tingkat</th>
-                        <th scope="col">Tanggal</th>
-                        <th scope="col" class="text-center">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($kejuaraan as $item)
-                      <tr>
-                        <th scope="row">{{ $loop->index + 1 }}</th>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->npm }}</td>
-                        <td>{{ $item->jurusan }}</td>
-                        <td>{{ $item->juara }}</td>
-                        <td>{{ $item->lomba }}</td>
-                        <td>{{ $item->penyelenggara }}</td>
-                        <td>{{ $item->tingkat }}</td>
-                        <td>{{ $item->tanggal }}</td>
-                        <td>
-                          <div class="btn-group">
-                            <a href="edit_prestasi/{{ $item->id }}"><button type="button" class="btn btn-warning mr-2">Edit</button></a>
-                            <a href="prestasi/delete/{{ $item->id }}"><button type="button" class="btn btn-danger">Hapus</button></a>
-                          </div>
-                        </td>
-                        @endforeach
-                      </tr>
-                    </tbody>
-                  </table>
-                  
-              </div>
+                @if (session('sukses'))
+                    <div class="alert alert-success">
+                        {{ session('sukses') }}
+                    </div>
+                @endif
+      
+              <!-- Tabel Prestasi -->
+              @include('master.tabel_prestasi')
+              <!-- End -->
+
             </div>
           </div>
-        </div>
+</div>
 
 
-        </form>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Scroll to top -->
   <a class="scroll-to-top rounded" href="#page-top">

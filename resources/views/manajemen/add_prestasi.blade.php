@@ -122,11 +122,12 @@
                                 <option value="Kota/Kabupaten">Kota/Kabupaten</option>
                                 <option value="Provinsi">Provinsi</option>
                                 <option value="Nasional">Nasional</option>
+                                <option value="Internasional">Internasional</option>
                             </select>
                     </div>
                             <p class="col-lg-12 mb-4">
                               <label for="date">Tanggal</label>
-                              <input type="date" name="date" value="YYYY-MM-DD" id="date">
+                              <input type="date" name="date" value="DD-MM-YY" id="date">
                             </p>
 
                             <div >

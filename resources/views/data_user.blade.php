@@ -68,51 +68,33 @@
                   <a href="/tambah_user"button type="button" class="btn btn-success">Tambah</button>
                     <i class="fa-solid fa-user-plus"></i>
                   </a>
-                    @if($message = Session :: get('sukses'))
-                      <div class="alert alert-success" role="alert">
-                        {{$message}}
-                      </div>
-                    @endif
-                </div>
-                <div class="table-responsive">
-                  <table class="table table-bordered">
-                    <thead class="table-primary">
-                      <tr>
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Username</th>
-                        <th scope="col" class="text-center">Password</th>
-                        <th scope="col">Level</th>
-                        <th scope="col" class="text-center">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @php
-                      $no=1;
-                      @endphp
-                      @foreach ($items as $index =>$item)
-                      <tr>
-                        <th scope="row">{{ $index + $items->firstItem() }}</th>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->username }}</td>
-                        <td>{{ $item->password }}</td>
-                        <td>{{ $item->level }}</td>
-                        <td>
-                          <div class="btn-group">
-                            <a href="edit_user/{{ $item->id }}"><button type="button" class="btn btn-warning mr-2">Edit</button></a>
-                            <a href="/admin/delete/{{ $item->id }}"><button type="button" class="btn btn-danger">Hapus</button></a>
-                          </div>
-                        </td>
-                        @endforeach
-                      </tr>
-                    </tbody>
-                  </table>
-                  {{ $items->links() }}
+                  
+
+              <div class="card">
+                <form action="search_user" method="GET" class="form-inline">
+                  <div class="input-group">
+                    <input type="text" name="search" class="form-control bg-light border-1 small" 
+                      placeholder="Pencarian" style="border-color: #3f51b5;">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
-            </div>
-          </div>
-        </div>
+
+                </div>
+                @if (session('sukses'))
+                    <div class="alert alert-success">
+                        {{ session('sukses') }}
+                    </div>
+                @endif
+
+   <!-- Tabel User -->
+    @include('master.tabel_user')
+  <!-- End -->
+
 
   <!-- Scroll to top -->
   <a class="scroll-to-top rounded" href="#page-top">

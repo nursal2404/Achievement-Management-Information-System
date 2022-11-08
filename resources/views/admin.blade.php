@@ -144,55 +144,7 @@
             </div>
 
 
-          <!-- Tabel -->
-            <!-- <div class="col-lg-12 mb-4">
-              <div class="card">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <a href="/tambah_user"button type="button" class="btn btn-success">Tambah</button>
-                  <i class="fa-solid fa-user-plus"></i>
-                </a>
-                </div>
-                @if($message = Session :: get('sukses'))
-                <div class="container">
-                  <div class="alert alert-success" role="alert">
-                        {{$message}}
-                  </div>
-                </div>  
-                  @endif
-                <div class="table-responsive">
-                  <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Password</th>
-                        <th scopre="col">Level</th>
-                        <th scope="cool">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-            @foreach ($items as $item)
-            <tr>
-              <th scope="row">{{ $loop->index + 1 }}</th>
-              <td>{{ $item->name }}</td>
-              <td>{{ $item->username }}</td>
-              <td>{{ $item->password }}</td>
-              <td>{{ $item->level }}</td>
-              <td>
-              <a href="/admin/edit/{{ $item->id }}"><button type="button" class="btn btn-warning">Edit</button></a>
-              <a href="/admin/delete/{{ $item->id }}"><button type="button" class="btn btn-danger">Hapus</button></a>
-              </td>
-              @endforeach
-            </tr>
-        
-          </tbody>
-                  </table>
-                </div>
-                <div class="card-footer"></div>
-              </div>
-            </div> -->
+
 
         </div>
 

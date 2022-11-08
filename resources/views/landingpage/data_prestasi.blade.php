@@ -54,6 +54,26 @@
 
           <div class="row mb-3">
             <div class="col-lg-12 mb-4">
+
+
+              <div class="card">
+                    <form action="pencarian_prestasi" method="GET" class="form-inline">
+                      <div class="input-group">
+                        <input type="text" name="search" class="form-control bg-light border-1 small" 
+                          placeholder="Pencarian" style="border-color: #3f51b5;"/>
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-lg-12 mb-4">
               <div class="card">
                 <div class="table-responsive">
                   <table class="table table-bordered">
@@ -61,14 +81,14 @@
                       <tr>
                       <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Nama Mahasiswa</th>
-                        <th scope="col">NPM</th>
-                        <th scope="col">Jurusan</th>
-                        <th scope="col">Prestasi</th>
-                        <th scope="col">Nama Lomba</th>
-                        <th scope="col">Penyelenggara</th>
-                        <th scope="col">Tingkat</th>
-                        <th scope="col">Tanggal</th>
+                        <th scope="col">@sortablelink('name' , 'Nama')</th>
+                        <th scope="col">@sortablelink('npm' , 'NPM')</th>
+                        <th scope="col">@sortablelink('jurusan')</th>
+                        <th scope="col" class="text-center">Prestasi</th>
+                        <th scope="col" class="text-center">Nama Lomba</th>
+                        <th scope="col" class="text-center">Penyelenggara</th>
+                        <th scope="col">@sortablelink('tingkat')</th>
+                        <th scope="col">@sortablelink('tanggal')</th>
                       </tr>
                     </thead>
                     <tbody>

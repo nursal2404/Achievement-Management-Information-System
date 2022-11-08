@@ -8,7 +8,13 @@ class PrestasiController extends Controller
 {
     public function index()
     {
-        $kejuaraan = DB::table('prestasis')->get();
+        // $kejuaraan = Prestasi::sortable()->get();
+        // if(request('search')){
+        //     $kejuaraan -> where('npm','like','%'.request('search').'%');
+        // }
+        
+        $kejuaraan = Prestasi::sortable()->get();
+        // $kejuaraan = DB::table('prestasis')->sortable()->get();
         return view('manajemen.prestasi', compact(['kejuaraan']));
     }
 
@@ -40,7 +46,22 @@ class PrestasiController extends Controller
 
     public function edit($id)
     {
-        $kejuaraan = DB::table('prestasis')->get();
+        $kejuaraan = Prestasi::find($id);
         return view('manajemen.edit_prestasi', compact(['kejuaraan']));
     }
+
+    public function update_prestasi(Request $request, $id)
+    {
+        $kejuaraan = Prestasi::find($id);
+        $kejuaraan->update($request->all());
+        return redirect()->route('prestasi')->with('sukses','Data Berhasil Diedit');
+    }
+
+    public function search(Request $request)
+    {
+        $kejuaraan = $request->search;
+        $kejuaraan = Prestasi::where('npm', 'like', "%" . $kejuaraan . "%")->paginate(5);
+        return view('manajemen.prestasi', compact('kejuaraan'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
 }

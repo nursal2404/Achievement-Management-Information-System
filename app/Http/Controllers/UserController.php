@@ -12,4 +12,9 @@ class UserController extends Controller
     {
         return view('main_user');
     }
+
+    public function daftarkan_lomba()
+    {
+        return view('daftarkan_lomba');
+    }
 }
