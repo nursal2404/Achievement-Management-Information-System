@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -21,9 +22,9 @@ class AuthController extends Controller
                 'password' => 'required',
             ]);
 
-        $kredensil = $request->only('username','password');
+        $otentifikasi = $request->only('username','password');
 
-            if (Auth::attempt($kredensil)) {
+            if (Auth::attempt($otentifikasi)) {
                 $user = Auth::user();
                 if ($user->level == 'admin') {
                     return redirect()->intended('admin');
@@ -43,5 +44,20 @@ class AuthController extends Controller
        $request->session()->flush();
        Auth::logout();
        return Redirect('login');
+    }
+
+    public function register(Request $request)
+    {
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect('login')->with('sukses','Berhasil Daftar');
+    }
+
+    public function forget_password(){
+        return view ('lupa_password');
     }
 }

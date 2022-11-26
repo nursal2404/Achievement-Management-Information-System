@@ -1,7 +1,7 @@
 <body id="page-top">
   <div id="wrapper">
     <!-- Sidebar -->
-    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+    <ul class="navbar-nav sidebar sidebar-light accordion toggled" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         <div class="sidebar-brand-text mx-3">SI Manajemen Prestasi</div>
       </a>
@@ -17,22 +17,22 @@
       </div>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" 
+        <a class="nav-link collapsed" href="user_lomba" 
           aria-expanded="true" aria-controls="collapseBootstrap">
-          <i class="fa-solid fa-trophy"></i>
-          <span>Daftarkan Prestasi</span>
+          <i class="fa-solid fa-medal"></i>
+          <span>Manajemen Perlombaan</span>
         </a>
-    
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/daftarkan_lomba" 
+        <a class="nav-link collapsed" href="#" 
           aria-expanded="true" aria-controls="collapseBootstrap">
-          <i class="fa-solid fa-medal"></i>
-          <span>Daftarkan Perlombaan</span>
+          <i class="fa-solid fa-trophy"></i>
+          <span>Manajemen Prestasi</span>
         </a>
-    
       </li>
+
+
 
     </ul>
     <!-- Sidebar -->
@@ -44,40 +44,22 @@
             <i class="fa fa-bars"></i>
           </button>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                aria-labelledby="searchDropdown">
-                <form class="navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-1 small" placeholder="Apa yang ingin Anda Cari?"
-                      aria-label="Search" aria-describedby="basic-addon2" style="border-color: #3f51b5;">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
- 
-            
-            <li class="nav-item dropdown no-arrow">
+            <li class="nav-item dropdown no-arrow"> 
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <img class="img-profile rounded-circle" src="img/icon_user.png" style="max-width: 60px">
                 <span class="ml-2 d-none d-lg-inline text-white small">{{ Auth::user()->name }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="profil_user">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{url('logout')}}">Log out</a>
+                <a class="dropdown-item" href="{{url('logout')}}">
+                  <i class="bi bi-box-arrow-in-left"></i>
+                  Log out
+              </a>
               </div>
             </li>
           </ul>

@@ -13,19 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('lombas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users'); 
             $table->string('name');
-            $table->string('email');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->enum('level',['admin','user'])->default('user');
-            // $table->integer('perolehan_prestasi')->nulllable()->default(0);
-            $table->timestamps();
+            $table->string('npm');
+            $table->string('jurusan');
+            $table->string('lomba');
+            $table->string('penyelenggara');
+            $table->string('tingkat');
+            $table->date('tanggal');
+            $table->string('sertifikat_file')->nullable();
+
         });
     }
-
-    
 
     /**
      * Reverse the migrations.
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('lombas');
     }
 };

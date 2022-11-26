@@ -1,107 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <meta name="description" content=""/>
-        <meta name="author" content=""/>
-        <title>Login</title>
-        <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
-            crossorigin="anonymous"></script>
-    </head>
-    <body class="bg-primary">
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    {{-- Error Alert --}}
-                                    @if(session('error'))
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        {{session('error')}}
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    @endif
-                                    <div class="card-header">
-                                        <h3 class="text-center font-weight-light my-4">Silahkan Login</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <form action="{{url('proses_login')}}" method="POST" id="logForm">
-                                            {{ csrf_field() }}
-                                            <div class="form-group">
-                                                @error('login_gagal')
-                                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                                        <span class="alert-inner--text"><strong>Login Gagal</strong> </span>
-                                                        
-                                                        </button>
-                                                    </div>
-                                                    @enderror
-                                                <label class="small mb-1" for="inputEmailAddress">Username</label>
-                                                <input
-                                                    class="form-control py-4"
-                                                    id="inputEmailAddress"
-                                                    name="username"
-                                                    type="text"
-                                                    placeholder="Masukkan Username"/>
-                                                @if($errors->has('username'))
-                                                <span class="error">{{ $errors->first('username') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="small mb-1" for="inputPassword">Password</label>
-                                                <input
-                                                    class="form-control py-4"
-                                                    id="inputPassword"
-                                                    type="password"
-                                                    name="password"
-                                                    placeholder="Masukkan Password"/>
-                                                @if($errors->has('password'))
-                                                <span class="error">{{ $errors->first('password') }}</span>
-                                                @endif
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" id="rememberPasswordCheck" type="checkbox"/>
-                                                    <label class="custom-control-label" for="rememberPasswordCheck">Remember password</label>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                {{-- <a class="small" href="#">Forgot Password?</a> --}}
-                                                <button class="btn btn-primary btn-block" type="submit">Login</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <div class="small">
-                                            {{-- <a href="{{url('register')}}">Belum Punya Akun? Silahkan Hubungi Admin</a> --}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<head>
+    <title>Login</title>
+    <link href="{{ asset('css/style-login-form.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<body>
+<a href="/" class="div"><i class="bi bi-arrow-left-circle-fill"></i>Kembali</a>
+<div class="container" id="container">
+
+	<div class="form-container sign-up-container">
+		<form action="{{ route('register') }}" method="POST" id="logForm">
+			{{ csrf_field() }}
+			<h2>Buat Akun</h2>
+			<input type="text" name="name" placeholder="Nama" required/>
+			<input type="email" name="email" placeholder="Email" />
+			<input type="text" name="username" placeholder="Username(NPM)" required/>
+			<input type="password" name="password" placeholder="Password" required/>
+			<button>Daftar</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="{{url('proses_login')}}" method="POST" id="logForm">
+          {{ csrf_field() }}
+			<h2>Login</h2>
+				@if (session('sukses'))
+                    <div class="alert alert-success">
+                        {{ session('sukses') }}
                     </div>
-                </main>
-            </div>
- 
-        </div>
-        <script
-            src="https://code.jquery.com/jquery-3.4.1.min.js"
-            crossorigin="anonymous"></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-            crossorigin="anonymous"></script>
-        <script src="{{url('assets/js/scripts.js')}}"></script>
-    </body>
+                @endif
+			<input type="text" name="username" placeholder="Username" required/>
+			<input type="password" name="password" placeholder="Password" required/>
+			<a href="forget_password">Lupa password?</a>
+			<button>Login</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h2>Sudah Punya Akun?</h2>
+				<p>Silahkan Login</p>
+				<button class="ghost" id="signIn">Login</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h2>Belum Punya Akun?</h2>
+				<p>Silahkan Daftar Terlebih Dahulu</p>
+				<button class="ghost" id="signUp">Daftar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="js/form-login-register.js"></script>
+</body>
 </html>

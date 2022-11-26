@@ -7,20 +7,14 @@ use App\Models\Prestasi;
 class PrestasiController extends Controller
 {
     public function index()
-    {
-        // $kejuaraan = Prestasi::sortable()->get();
-        // if(request('search')){
-        //     $kejuaraan -> where('npm','like','%'.request('search').'%');
-        // }
-        
+    {  
         $kejuaraan = Prestasi::sortable()->get();
-        // $kejuaraan = DB::table('prestasis')->sortable()->get();
-        return view('manajemen.prestasi', compact(['kejuaraan']));
+        return view('admin.prestasi', compact(['kejuaraan']));
     }
 
     public function add()
     {
-        return view('manajemen.add_prestasi');
+        return view('admin.add_prestasi');
     }
 
     public function add_proses(Request $request)
@@ -47,7 +41,7 @@ class PrestasiController extends Controller
     public function edit($id)
     {
         $kejuaraan = Prestasi::find($id);
-        return view('manajemen.edit_prestasi', compact(['kejuaraan']));
+        return view('admin.edit_prestasi', compact(['kejuaraan']));
     }
 
     public function update_prestasi(Request $request, $id)
@@ -61,7 +55,7 @@ class PrestasiController extends Controller
     {
         $kejuaraan = $request->search;
         $kejuaraan = Prestasi::where('npm', 'like', "%" . $kejuaraan . "%")->paginate(5);
-        return view('manajemen.prestasi', compact('kejuaraan'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin.prestasi', compact('kejuaraan'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
 }

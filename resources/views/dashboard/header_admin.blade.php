@@ -6,10 +6,7 @@
             <i class="fa fa-bars"></i>
           </button>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown no-arrow">
-
-              
-<li class="nav-item dropdown no-arrow">
+            <li class="nav-item dropdown no-arrow">             
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <img class="img-profile rounded-circle" src="img/icon_user.png" style="max-width: 60px">
@@ -20,8 +17,11 @@
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{url('logout')}}">Log out</a>
+                  <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{url('logout')}}">
+                  <i class="bi bi-box-arrow-in-left"></i>
+                  Log out
+                </a>
               </div>
             </li>
           </ul>

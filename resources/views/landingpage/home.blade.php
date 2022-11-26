@@ -2,15 +2,14 @@
 <html lang="en">
 <title>Beranda</title>
 @include('landingpage/head')
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+<div class="collapse navbar-collapse" id="Menu">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="/" class="nav-item nav-link active">Beranda</a>
-                    <a href="visi_misi" class="nav-item nav-link">Visi Misi</a>
-                    <a href="berita" class="nav-item nav-link">Berita</a>
-                    <a href="data_prestasi" class="nav-item nav-link">Prestasi</a>
+                    <li clas="nav-item"><a href="/" class="nav-link active">Beranda</a></li>
+                    <li clas="nav-item"><a href="/visi_misi" class="nav-link">Visi Misi</a></li>
+                    <li clas="nav-item"><a href="/berita" class="nav-link">Berita</a></li>
+                    <li clas="nav-item"><a href="data_prestasi" class="nav-link">Prestasi</a></li>
                 </div>
-                <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
-                <a href="login" class="btn btn-primary py-2 px-4 ms-3">Login</a>
+                <a href="login" class="border border-primary py-2 px-4 ms-3">Login</a>
             </div>
         </nav>
 
@@ -70,7 +69,9 @@
     </div>
     <!-- Full Screen Search End -->
 
+<!-- JavaScript Libraries -->
 @include('landingpage/script')
+<!-- End JavaScript Libraries -->
 </body>
 
 </html>

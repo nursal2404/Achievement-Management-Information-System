@@ -2,15 +2,14 @@
 <html lang="en">
 <title>Semua Berita</title>
 @include('landingpage/head')
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="collapse navbar-collapse" id="Menu">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="/" class="nav-item nav-link ">Beranda</a>
-                    <a href="/visi_misi" class="nav-item nav-link">Visi Misi</a>
-                    <a href="/berita" class="nav-item nav-link active">Berita</a>
-                    <a href="data_prestasi" class="nav-item nav-link">Prestasi</a>
+                    <li clas="nav-item"><a href="/" class=" nav-link">Beranda</a></li>
+                    <li clas="nav-item"><a href="/visi_misi" class="nav-link">Visi Misi</a></li>
+                    <li clas="nav-item"><a href="/berita" class=" nav-link active">Berita</a></li>
+                    <li clas="nav-item"><a href="data_prestasi" class=" nav-link">Prestasi</a></li>
                 </div>
-                <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
-                <a href="login" class="btn btn-primary py-2 px-4 ms-3">Login</a>
+                <a href="login" class="border border-primary py-2 px-4 ms-3">Login</a>
             </div>
         </nav>
 
@@ -51,7 +50,7 @@
         <div class="container py-5">
             <div class="row g-5">
                 <!-- Blog list Start -->
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="row g-5">
                         <div class="col-md-6 wow slideInUp" data-wow-delay="0.1s">
                             <div class="blog-item bg-light rounded overflow-hidden">
@@ -178,75 +177,7 @@
                 </div>
                 <!-- Blog list End -->
     
-                <!-- Sidebar Start -->
-                <div class="col-lg-4">
-                    <!-- Search Form Start -->
-                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
-                        <div class="input-group">
-                            <input type="text" class="form-control p-3" placeholder="Keyword">
-                            <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
-                        </div>
-                    </div>
-                    <!-- Search Form End -->
-    
-                    <!-- Category Start -->
-                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
-                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                            <h3 class="mb-0">Categories</h3>
-                        </div>
-                        <div class="link-animated d-flex flex-column justify-content-start">
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Web Design</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Web Development</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Web Development</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Keyword Research</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Email Marketing</a>
-                        </div>
-                    </div>
-                    <!-- Category End -->
-    
-                    <!-- Recent Post Start -->
-                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
-                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                            <h3 class="mb-0">Berita Terbaru</h3>
-                        </div>
-                        <div class="d-flex rounded overflow-hidden mb-3">
-                            <img class="img-fluid" src="img/blog-1.jpg" style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                            <a href="" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Judul Berita Prestasi Terbaru
-                        </div>
-                        <div class="d-flex rounded overflow-hidden mb-3">
-                            <img class="img-fluid" src="img/blog-2.jpg" style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                            <a href="" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Judul Berita Prestasi Terbaru
-                            </a>
-                        </div>
-                        <div class="d-flex rounded overflow-hidden mb-3">
-                            <img class="img-fluid" src="img/blog-3.jpg" style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                            <a href="" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Judul Berita Prestasi Terbaru
-                            </a>
-                        </div>
-                        <div class="d-flex rounded overflow-hidden mb-3">
-                            <img class="img-fluid" src="img/blog-1.jpg" style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                            <a href="" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Judul Berita Prestasi Terbaru
-                            </a>
-                        </div>
-                        <div class="d-flex rounded overflow-hidden mb-3">
-                            <img class="img-fluid" src="img/blog-2.jpg" style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                            <a href="" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Judul Berita Prestasi Terbaru
-                            </a>
-                        </div>
-                        <div class="d-flex rounded overflow-hidden mb-3">
-                            <img class="img-fluid" src="img/blog-3.jpg" style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                            <a href="" class="h5 fw-semi-bold d-flex align-items-center bg-light px-3 mb-0">Judul Berita Prestasi Terbaru
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Recent Post End -->
-    
-                </div>
-                <!-- Sidebar End -->
-            </div>
-        </div>
-    </div>
-    <!-- Blog End -->
+                
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>

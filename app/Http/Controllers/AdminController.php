@@ -11,25 +11,22 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin');
+        return view('admin.index');
     }
 
-    public function manajemen_user(Request $request)
+    public function profil()
     {
-        if($request->has('search')){
-            $items = User::where('username','LIKE','%'.$request->search.'%')->paginate(5);
-        }
-        else{
-            $items = User::sortable()->paginate(5);
-            return view('data_user', compact(['items']));
-        }
-                
-        $items = User::sortable()->paginate(5);
-        return view('data_user', compact(['items']));
+        return view('admin.profil');
     }
 
-    public function tambah_user(){
-        return view('tambah_user');
+    public function mahasiswa(Request $request)
+    {           
+        $items = User::where('level', 'user')->sortable()->paginate(5);
+        return view('admin.mahasiswa', compact(['items']));
+    }
+
+    public function add_mahasiswa(){
+        return view('admin.add_mahasiswa');
     }
 
     public function proses_tambah(Request $request){
@@ -47,7 +44,7 @@ class AdminController extends Controller
             'level' => $request->level,
         ]);
 
-        return redirect()->route('data_user')->with('sukses','Data Berhasil Ditambahkan');;
+        return redirect()->route('mahasiswa')->with('sukses','Data Berhasil Ditambahkan');
     }
 
     public function edit($id)
@@ -60,20 +57,21 @@ class AdminController extends Controller
     {
         $items = User::find($id);
         $items->update($request->all());
-        return redirect()->route('data_user')->with('sukses','Data Berhasil DiEdit');
+        return redirect()->route('mahasiswa')->with('sukses','Data Berhasil DiEdit');
     }
 
     public function delete($id){
         $data = User::find($id);
         $data->delete();
-        return redirect()->route('data_user')->with('sukses','Data Berhasil Dihapus');
+        return redirect()->route('mahasiswa')->with('sukses','Data Berhasil Dihapus');
     }
 
     public function search(Request $request)
     {
         $items = $request->search;
         $items = User::where('username', 'like', "%" . $items . "%")->paginate(5);
-        return view('data_user', compact('items'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('admin.mahasiswa', compact('items'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
+
 }
 
