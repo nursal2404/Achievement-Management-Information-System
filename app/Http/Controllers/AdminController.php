@@ -2,75 +2,108 @@
 
 namespace App\Http\Controllers;
 use DB;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Lomba;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        return view('admin.index', [
+            "title" => 'Dasboard'
+        ]);
     }
 
     public function profil()
     {
-        return view('admin.profil');
+        return view('admin.profil' , [
+            "title" => 'Profil'
+        ]);
     }
 
     public function mahasiswa(Request $request)
     {           
-        $items = User::where('level', 'user')->sortable()->paginate(5);
-        return view('admin.mahasiswa', compact(['items']));
+        $items = User::where('level', 'user')->get();
+        // dd($items);
+        return view('admin.mahasiswa', compact(['items']) , [
+            "title" => 'Manajemen Mahasiswa'
+        ]);
     }
 
     public function add_mahasiswa(){
-        return view('admin.add_mahasiswa');
+        return view('admin.add_mahasiswa' , [
+            "title" => 'Manajemen Mahasiswa'
+        ]);
     }
 
-    public function proses_tambah(Request $request){
+    public function create_mahasiswa(Request $request){
         $this->validate($request, [
             'name' => 'required',
+            'jurusan' => 'required',
+            'gender' => 'required',
+            'email' => 'required',
             'username' => 'required',
             'password' => 'required|min:6|max:10',
-            'level' => '',
         ]);
 
         User::create([
             'name' => $request->name,
+            'jurusan' => $request->jurusan,
+            'gender' => $request->gender,
+            'email' => $request->email,
             'username' => $request->username,
             'password' => Hash::make($request->password),
-            'level' => $request->level,
         ]);
 
         return redirect()->route('mahasiswa')->with('sukses','Data Berhasil Ditambahkan');
     }
 
-    public function edit($id)
+    public function edit_mahasiswa($id)
     {
-        $items = User::find($id);
-        return view('edit_user', compact('items'));
+        $mahasiswa = User::find($id);
+        return view('admin.edit_mahasiswa', compact('mahasiswa') , [
+            "title" => 'Manajemen Mahasiswa'
+        ]);
     }
 
-    public function proses_edit(Request $request, $id)
+    public function update_mahasiswa(Request $request, $id)
     {
         $items = User::find($id);
+        $lomba = Lomba::where('npm', $items['username'])->get();
+
         $items->update($request->all());
+
+        foreach ($lomba as $key => $value) {
+            $lomba[$key]->update([
+                'jurusan' => $request->jurusan,
+            ]);
+        }
+
         return redirect()->route('mahasiswa')->with('sukses','Data Berhasil DiEdit');
     }
-
-    public function delete($id){
+    
+    public function delete_mahasiswa($id){
         $data = User::find($id);
+        $lomba = null;
+
+        if (Lomba::where('npm', $data['username'])->first() != null) {
+            $lomba = Lomba::where('npm', $data['username'])->first();
+            $lomba->delete();
+        }
+
         $data->delete();
+
         return redirect()->route('mahasiswa')->with('sukses','Data Berhasil Dihapus');
     }
-
-    public function search(Request $request)
-    {
-        $items = $request->search;
-        $items = User::where('username', 'like', "%" . $items . "%")->paginate(5);
-        return view('admin.mahasiswa', compact('items'))->with('i', (request()->input('page', 1) - 1) * 5);
+   
+    public function add_berita(){
+        return view ('tambahkan_berita' , [
+            "title" => 'Manajemen Berita'
+        ]);
     }
 
 }

@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-@include('dashboard/head')
+@extends('layouts_admin')
+@section('title', 'Dasboard')
 
-<title>Dashboard Admin</title>
-<body> 
-
-<!-- Main Page -->
-<div id="wrapper"> 
-  @include('dashboard/sidebar_admin')
-  
-  <!-- Main Content -->
-  @include('dashboard/header_admin')
+  @section('content')
 
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -98,13 +89,9 @@
           </div>
           <!-- End Manajemen Card -->
 
-      </div>
-    </div>
-  <!-- End Main Content -->
 
-</div>
-<!-- End Main Page -->
 
-  @include('dashboard/script')
+  @endsection
+
 </body>
 </html>

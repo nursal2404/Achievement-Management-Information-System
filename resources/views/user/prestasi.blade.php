@@ -1,78 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-@include('dashboard/head')
-@include('dashboard/header_user')
+@extends('layouts_mahasiswa')
+@section('title', 'Perolehan Prestasi')
 
-<title>Manajemen Perlombaan</title>
-<div class="container-fluid">
+  @section('content')
+  
+        <div class="container-fluid">
           <div class="text-center mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Manajemen Prestasi</h1>
+            <h1 class="h3 mb-0 text-gray-800">Perolehan Prestasi</h1>
           </div>
-          <div class="row mb-3">
-            <div class="col-lg-12 mb-4">
-              <div class="card">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <a href="daftarkan_lomba"button type="button" class="btn btn-success">Tambah</button>
-                    <i class="fa-solid fa-user-plus"></i>
-                  </a>
-
-                  <div class="card">
-                    <form action="search" method="get" class="form-inline">
-                      <div class="input-group">
-                        <input type="search" name="search" class="form-control bg-light border-1 small" 
-                          placeholder="Pencarian" style="border-color: #3f51b5;"/>
-                        <div class="input-group-append">
-                          <button class="btn btn-primary" type="submit">
-                            <i class="fas fa-search fa-sm"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-
-
-                </div>
-                @if (session('sukses'))
-                    <div class="alert alert-success">
-                        {{ session('sukses') }}
-                    </div>
-                @endif
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card mb-4">
+                <div class="table-responsive p-3">
       
               <!-- Tabel Prestasi -->
               <div class="table-responsive">
-                  <table class="table table-bordered">
+              <table class="table table-bordered" id="dataTable">
                     <thead class="table-primary">
-                      <tr>
-                      <tr>
+                    <tr>
                         <th scope="col">No</th>
-                        <th scope="col">@sortablelink('name')</th>
-                        <th scope="col">@sortablelink('npm')</th>
-                        <th scope="col">@sortablelink('jurusan')</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">NPM</th>
+                        <th scope="col">Jurusan</th>
+                        <th scope="col">Prestasi</th>
                         <th scope="col">Nama Lomba</th>
                         <th scope="col">Penyelenggara</th>
-                        <th scope="col">@sortablelink('tingkat')</th>
-                        <th scope="col">@sortablelink('tanggal')</th>
-                        <th scope="col" class="text-center">Aksi</th>
+                        <th scope="col">Tingkat</th>
+                        <th scope="col">Tanggal</th>
                       </tr>
                     </thead>
                     <tbody>
-                    
+                      @foreach ($kejuaraan as $item)
                       <tr>
-                        <th scope="row">1</th>
-                        <td>{{ Auth::user()->name }}</td>
-                        <td>{{ Auth::user()->username }}</td>
-                        <td>{{ Auth::user()->jurusan }}</td>
-                        <td>{{ Auth::user()->lomba }}</td>
-                        <td>{{ Auth::user()->penyelenggara }}</td>
-                        <td>{{ Auth::user()->tingkat }}</td>
-                        <td>{{ Auth::user()->tanggal }}</td>
-                        <td>
-                          <div class="btn-group">
-                            <a href=""><button type="button" class="btn btn-warning mr-2">Edit</button></a>
-                            <a href="user_lomba/delete/{{ Auth::user()->id }}"><button type="button" class="btn btn-danger">Hapus</button></a>
-                          </div>
-                        </td>
-                     
+                        <th scope="row">{{ $loop->index + 1 }}</th>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->npm }}</td>
+                        <td>{{ $item->jurusan }}</td>
+                        <td>{{ $item->juara }}</td>
+                        <td>{{ $item->lomba }}</td>
+                        <td>{{ $item->penyelenggara }}</td>
+                        <td>{{ $item->tingkat }}</td>
+                        <td>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</td>
+                        @endforeach
                       </tr>
                     </tbody>
                   </table>
@@ -82,9 +50,6 @@
 
             </div>
           </div>
-</div>
+        </div>
 
-@include('dashboard/script')
-</body>
-
-</html>
+  @endsection

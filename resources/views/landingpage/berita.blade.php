@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<title>Semua Berita</title>
-@include('landingpage/head')
-            <div class="collapse navbar-collapse" id="Menu">
-                <div class="navbar-nav ms-auto py-0">
-                    <li clas="nav-item"><a href="/" class=" nav-link">Beranda</a></li>
-                    <li clas="nav-item"><a href="/visi_misi" class="nav-link">Visi Misi</a></li>
-                    <li clas="nav-item"><a href="/berita" class=" nav-link active">Berita</a></li>
-                    <li clas="nav-item"><a href="data_prestasi" class=" nav-link">Prestasi</a></li>
-                </div>
-                <a href="login" class="border border-primary py-2 px-4 ms-3">Login</a>
-            </div>
-        </nav>
+@extends('layouts_landingpage')
+@section('title', 'Berita')
+
+
+@section('content')
 
         <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
             <div class="row py-5">
@@ -183,7 +174,4 @@
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
-@include('landingpage/script')
-</body>
-
-</html>
+@endsection

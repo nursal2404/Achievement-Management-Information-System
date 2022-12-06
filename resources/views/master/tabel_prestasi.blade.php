@@ -4,14 +4,15 @@
       <tr>
       <tr>
         <th scope="col">No</th>
-        <th scope="col">@sortablelink('name')</th>
-        <th scope="col">@sortablelink('npm')</th>
-        <th scope="col">@sortablelink('jurusan')</th>
+        <th scope="col">Nama</th>
+        <th scope="col">NPM</th>
+        <th scope="col">Jurusan</th>
         <th scope="col">Prestasi</th>
         <th scope="col">Nama Lomba</th>
         <th scope="col">Penyelenggara</th>
-        <th scope="col">@sortablelink('tingkat')</th>
-        <th scope="col">@sortablelink('tanggal')</th>
+        <th scope="col">Tingkat</th>
+        <th scope="col">Tanggal</th>
+        <!-- <th scope="col">@sortablelink('tanggal')</th> -->
         <th scope="col" class="text-center">Aksi</th>
       </tr>
     </thead>

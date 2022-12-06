@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-@include('dashboard/head')
-@include('dashboard/header_user')
-<title>Dashboard User</title>
+@extends('layouts_mahasiswa')
+@section('title', 'Dashboard')
 
-
-        <!-- Container-->
+  @section('content')
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Selamat Datang , {{ Auth::user()->name }}</h1>
@@ -40,7 +36,8 @@
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col mr-2">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Manajemen Prestasi</div>
+                      <div class="h5 mb-0 font-weight-bold">
+                      <a href="user_prestasi" class="text-dark" style="text-decoration: none">Perolehan Prestasi </div></a>
                       <div class="mt-2 mb-0 text-muted text-xs">
                       </div>
                     </div>
@@ -59,12 +56,4 @@
     </div>
   </div>
 
-  <!-- Scroll to top -->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-@include('dashboard/script')
-</body>
-
-</html>
+@endsection

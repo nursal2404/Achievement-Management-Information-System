@@ -15,15 +15,17 @@ return new class extends Migration
     {
         Schema::create('lombas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users'); 
+            $table->string('user_id');
             $table->string('name');
             $table->string('npm');
-            $table->string('jurusan');
+            $table->string('jurusan'); 
             $table->string('lomba');
             $table->string('penyelenggara');
             $table->string('tingkat');
             $table->date('tanggal');
             $table->string('sertifikat_file')->nullable();
+
+            $table->foreign('user_id')->references('username')->on('users');
 
         });
     }

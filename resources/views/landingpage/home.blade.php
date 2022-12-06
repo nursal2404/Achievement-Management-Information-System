@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<title>Beranda</title>
-@include('landingpage/head')
-<div class="collapse navbar-collapse" id="Menu">
-                <div class="navbar-nav ms-auto py-0">
-                    <li clas="nav-item"><a href="/" class="nav-link active">Beranda</a></li>
-                    <li clas="nav-item"><a href="/visi_misi" class="nav-link">Visi Misi</a></li>
-                    <li clas="nav-item"><a href="/berita" class="nav-link">Berita</a></li>
-                    <li clas="nav-item"><a href="data_prestasi" class="nav-link">Prestasi</a></li>
-                </div>
-                <a href="login" class="border border-primary py-2 px-4 ms-3">Login</a>
-            </div>
-        </nav>
+@extends('layouts_landingpage')
+@section('title', 'Beranda')
+
+
+@section('content')
 
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -49,29 +40,6 @@
         </div>
     </div>
     <!-- Navbar & Carousel End -->
+    
+@endsection
 
-
-    <!-- Full Screen Search Start -->
-    <div class="modal fade" id="searchModal" tabindex="-1">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex align-items-center justify-content-center">
-                    <div class="input-group" style="max-width: 600px;">
-                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
-                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Full Screen Search End -->
-
-<!-- JavaScript Libraries -->
-@include('landingpage/script')
-<!-- End JavaScript Libraries -->
-</body>
-
-</html>

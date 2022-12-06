@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $tabel->string('title');
+            $table->foreignId('id_juara');
+            $table->string('title');
             $table->string('body');
-            $tabel->text('deskripsi');
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }

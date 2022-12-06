@@ -7,30 +7,34 @@ use App\Models\Prestasi;
 class LandingpageController extends Controller
 {
     public function index(){
-        return view('landingpage.home');
+        return view('landingpage.home',[
+            "title" => 'Beranda'
+        ]);
     } 
 
     public function data_prestasi(Request $request)
     {
-        $kejuaraan = Prestasi::sortable()->get();
-        return view('landingpage.data_prestasi', compact(['kejuaraan']));
+        $kejuaraan = Prestasi::get();
+        return view('landingpage.data_prestasi', compact(['kejuaraan'])  , [
+            "title" => 'Prestasi'
+        ]);
     }
 
     public function berita(){
-        return view('landingpage.berita');
+        return view('landingpage.berita',[
+            "title" => 'Berita'
+        ]);
+    }
+    
+    public function postingan(){
+        return view('landingpage.postingan',[
+            "title" => 'Berita'
+        ]);
     } 
 
-    public function pencarian_prestasi(Request $request)
-    {
-        $kejuaraan = $request->search;
-        $kejuaraan = Prestasi::where('npm', 'like', "%" . $kejuaraan . "%")
-                            ->orWhere('name', 'like', "%" . $kejuaraan . "%")->paginate(5);
-
-        return view('landingpage.data_prestasi', compact('kejuaraan'))->with('i', (request()->input('page', 1) - 1) * 5);
-    }
-
-
     public function visi_misi(){
-        return view('landingpage.visi_misi');
+        return view('landingpage.visi_misi',[
+            "title" => 'Visi Misi'
+        ]);
     } 
 }

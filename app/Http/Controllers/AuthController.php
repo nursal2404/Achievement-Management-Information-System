@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function index()
+    public function login()
     {
-        return view ('login');
+        return view ('auth.login');
     }
 
     public function proses_login(Request $request)
@@ -46,10 +46,17 @@ class AuthController extends Controller
        return Redirect('login');
     }
 
-    public function register(Request $request)
+    public function register()
+    {
+        return view ('auth.register');
+    }
+    
+    public function proses_register(Request $request)
     {
         User::create([
             'name' => $request->name,
+            'jurusan' => $request->jurusan,
+            'gender' => $request->gender,
             'email' => $request->email,
             'username' => $request->username,
             'password' => Hash::make($request->password),
@@ -60,4 +67,6 @@ class AuthController extends Controller
     public function forget_password(){
         return view ('lupa_password');
     }
+
+
 }

@@ -18,6 +18,7 @@ class AkunSeeder extends Seeder
         $user = [
             [
                 'email'=>'admin@gmail.com',
+                'gender' => 'Laki-Laki',
                 'username' => 'admin',
                 'name'=>'Admin',
                 'level'=>'admin',
