@@ -55,7 +55,7 @@ class LombaController extends Controller
 
         $lomba->update($request->all());
 
-        return redirect()->route('lomba')->with('sukses','Data Berhasil DiEdit');
+        return redirect()->route('lomba')->with('sukses','Data Berhasil Diedit');
     }
 
     public function admin_delete_lomba($id){
@@ -81,12 +81,12 @@ class LombaController extends Controller
             'lomba' => 'required',
             'penyelenggara' => 'required',
             'tingkat' => 'required',
-            'tanggal' => 'required',
+            'date' => 'required',
             'sertifikat_file'  => 'required|mimes:png,pdf',
         ]);
 
         $namafile = time() . '_' . Auth::user()->name . '_' . $request->sertifikat_file->getClientOriginalName();
-        $request->sertifikat_file->move('sertifikat', $namafile);
+        $request->sertifikat_file->move('sertifikat/', $namafile);
 
         Lomba::create([
             'user_id' => Auth::user()->username,
@@ -110,15 +110,56 @@ class LombaController extends Controller
         ]);
     }
 
+    public function user_update_lomba(Request $request, $id)
+    {
+        $lomba = Lomba::where('name' , Auth::user()->name)->first();
+        if( $request->file('sertifikat_file') == ""){
+            
+            $cek = [
+            'user_id' => Auth::user()->username,
+            'name' => Auth::user()->name,
+            'npm' => Auth::user()->username,
+            'jurusan' => Auth::user()->jurusan,
+            'lomba' => $request['lomba'],
+            'penyelenggara' => $request['penyelenggara'],
+            'tingkat' => $request['tingkat'],
+            'tanggal' => $request['date'],
+            'sertifikat_file' => $request['sertifikat_file']
+            ];
+        }
+        else
+        {
+            $file = $lomba->sertifikat_file;
+            File::delete($file);
+
+            $perubahan = $request->sertifikat_file;
+
+            $namafile = time() . '_' . Auth::user()->name . '_' . $perubahan->getClientOriginalName();
+            $perubahan->move(public_path() . 'sertifikat/', $namafile);
+
+            $cek = [
+                'user_id' => Auth::user()->username,
+                'name' => Auth::user()->name,
+                'npm' => Auth::user()->username,
+                'jurusan' => Auth::user()->jurusan,
+                'lomba' => $request['lomba'],
+                'penyelenggara' => $request['penyelenggara'],
+                'tingkat' => $request['tingkat'],
+                'tanggal' => $request['date'],
+                'sertifikat_file' => 'sertifikat/' . $namafile,
+            ];
+        }
+
+        if($lomba->update($cek)){
+            $lomba->save();
+        }
+        return redirect()->route('user_lomba')->with('sukses','Data Berhasil Diedit');
+    }
+
     public function user_delete_lomba($id){
         $data = Lomba::find($id);
         $data->delete();
         return redirect()->route('user_lomba')->with('sukses','Data Berhasil Dihapus');
-    }
-
-    public function lihat_sertif()
-    {
-        
     }
 //End Route Mahasiswa
 

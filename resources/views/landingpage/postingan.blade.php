@@ -23,37 +23,41 @@
 
             @if ($posts->count())
                 <div class="card mb-3 text-center">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="{{ asset ($posts[0]->photo) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ $posts[0]->title }}</h5>
                         <p class="card-text">{{ $posts[0]->body }}</p>
                         <p class="card-text"><small class="text-muted">{{ $posts[0]->created_at->diffForHumans() }}</small></p>
-                        <a href="#" class="btn btn-primary">Read More</a>
+                        <a href="postingan/{{ $posts[0]->id }}" class="btn btn-primary">Read More</a>
                     </div>
                 </div>
             @else
+            <div class="text-center">
                 <p>Tidak Ada Berita Ditemukan</p>
-            @endif
             </div>
-        </div>
-    </div>  
+            @endif
+
 
                 <div class="container">
                     <div class="row">
                     @foreach ($posts->skip(1) as $post)
-                        <div class="col-md-4">
+                        <div class="col-md-4 text-center">
                             <div class="card">   
-                                <img src="..." class="card-img-top" alt="...">
+                                <img src="{{ asset ($post->photo) }}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $post->title }}</h5>
                                         <p class="card-text">{{ $post->body }}</p>
-                                    <a href="#" class="btn btn-primary">Read More</a>
+                                        <p class="card-text"><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small></p>
+                                    <a href="postingan/{{ $post->id }}" class="btn btn-primary">Read More</a>
                                 </div>
                             </div>  
                         </div>
                     @endforeach                                
-                    </div>
-                    
+                    </div>                   
                 </div>
+                {{ $posts->links() }}
+                </div>
+        </div>
+    </div>  
     
   @endsection

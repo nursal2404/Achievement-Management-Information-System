@@ -50,10 +50,32 @@
                               Hapus
                             </button>
                           </div>
-                        </div>
-                        
+                        </div>                        
                       </td>
-                      @endforeach
+
+                        <!-- Modal Hapus Mahasiswa -->
+                        <div class="modal fade" id="deleteMahasiswa">
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Anda yakin ingin menghapus?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                Are you sure you want to delete?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Batal</button>
+                                <a href="mahasiswa/delete/{{ $item->id }}"><button type="button" class="btn btn-primary">Hapus</button></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Modal Hapus Mahasiswa -->
+
+                    @endforeach
                     </tr>
                     </tbody>
                   </table>
@@ -63,27 +85,7 @@
           </div>
           <!-- End Tabel Mahasiswa -->
           
-           <!-- Modal Hapus Mahasiswa -->
-           <div class="modal fade" id="deleteMahasiswa">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Anda yakin ingin menghapus?</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  Are you sure you want to delete?
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Batal</button>
-                  <a href="mahasiswa/delete/{{ $item->id }}"><button type="button" class="btn btn-primary">Hapus</button></a>
-                </div>
-              </div>
-            </div>
-           </div>
-           <!-- End Modal Hapus Mahasiswa -->          
+                   
           
   @endsection
 

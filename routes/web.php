@@ -13,8 +13,9 @@ use App\Http\Controllers\LandingpageController;
 
 // Router Landingpage
     Route::get('/', [LandingpageController::class , 'index']);
-    Route::get('berita', [LandingpageController::class , 'berita']);
+    Route::get('news', [LandingpageController::class , 'berita']);
     Route::get('postingan', [PostController::class , 'show']);
+    Route::get('postingan/{id}', [PostController::class , 'show_detail']);
     Route::get('visi_misi', [LandingpageController::class , 'visi_misi']);
     Route::get('data_prestasi', [LandingpageController::class , 'data_prestasi'])->name('data_prestasi.index');
     Route::get('pencarian_prestasi', [LandingpageController::class , 'pencarian_prestasi']);
@@ -49,7 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/lomba' , [LombaController::class , 'lomba'])->name('lomba');
         Route::get('add_lomba', [LombaController::class , 'admin_add_lomba']);
         Route::post('lomba', [LombaController::class , 'admin_create_lomba']);
-        Route::get('edit_lomba/{id}',[LombaController::class , 'admin_edit_lomba']);
+        Route::get('/edit_lomba/{id}',[LombaController::class , 'admin_edit_lomba']);
         Route::post('update_lomba/{id}', [LombaController::class , 'admin_update_lomba'])->name('admin_update_lomba');
         Route::get('lomba/delete/{id}', [LombaController::class, 'admin_delete_lomba']);
         Route::get('perolehan_prestasi/{id}',[PrestasiController::class , 'perolehan_prestasi'])->name('input_prestasi');
@@ -57,8 +58,13 @@ Route::group(['middleware' => ['auth']], function () {
         //
 
         // Route Manajemen Berita
-        Route::get('berita', [PostController::class , 'index']);
-        Route::get('tambahkan_berita', [AdminController::class , 'add_berita']);
+        Route::get('/berita', [PostController::class , 'index'])->name('berita');
+        Route::get('/add_berita', [PostController::class , 'add_berita']);
+        Route::post('berita', [PostController::class , 'create'])->name('create_post');
+        Route::get('/edit_berita/{id}', [PostController::class , 'edit']);
+        Route::post('update_berita/{id}', [PostController::class , 'update'])->name('update_post');
+        Route::get('berita/delete/{id}', [PostController::class, 'destroy']);
+        Route::get('tambahkan_berita/{id}', [AdminController::class , 'add_berita']);
         // 
     // End Route Admin
 
@@ -66,27 +72,32 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['cek_login:user']], function () {
     // Route User
-        Route::get('user', [UserController::class, 'index'])->name('user');
-
-       
+        Route::get('user', [UserController::class, 'index'])->name('user');  
         Route::get('profil_user',[UserController::class , 'profil']);
+
         Route::get('user_lomba',[UserController::class , 'user_lomba'])->name('user_lomba');
         Route::get('daftarkan_lomba',[UserController::class , 'daftarkan_lomba']);
         Route::post('user_lomba', [LombaController::class , 'user_create_lomba'])->name('add_proses_user.store');
         Route::get('user_edit_lomba/{id}',[LombaController::class , 'user_edit_lomba'])->name('user_edit_lomba');
+        Route::post('user_update_lomba/{id}',[LombaController::class , 'user_update_lomba'])->name('user_update_lomba');
         Route::get('user_lomba/delete/{id}', [LombaController::class, 'user_delete_lomba']);
+
         Route::get('user_prestasi',[UserController::class , 'user_prestasi'])->name('user_prestasi');
+        Route::get('user_download', [PrestasiController::class, 'user_download'])->name('user_download');
         // 
     });
 });
 // 
 
 // Route Login&Logout)
-Route::get('login', [AuthController::class , 'login'])->name('login');
-Route::get('register', [AuthController::class , 'register'])->name('register');
-Route::post('proses_register', [AuthController::class , 'proses_register'])->name('proses_register');
-Route::post('proses_login', 'App\Http\Controllers\AuthController@proses_login')->name('proses_login');
-Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
+    Route::get('login', [AuthController::class , 'login'])->name('login');
+    Route::get('register', [AuthController::class , 'register'])->name('register');
+    Route::post('proses_register', [AuthController::class , 'proses_register'])->name('proses_register');
+    Route::post('proses_login', 'App\Http\Controllers\AuthController@proses_login')->name('proses_login');
+    Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
 // 
+
+Route::get('download', [PrestasiController::class, 'download'])->name('download');
+
 
 Route::get('forget_password', [AuthController::class , 'forget_password'])->name('forget_password');

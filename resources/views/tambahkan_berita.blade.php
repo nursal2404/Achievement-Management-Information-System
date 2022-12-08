@@ -13,20 +13,17 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12 mb-4">
                     <div class="card">
-                        <div class="card-header">   
+                        <div class="card-header"> 
+                        <form class="row g-3" action="/berita" method="POST">
+                        @csrf  
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Judul</label>
-                                <input type="email" name="judul" class="form-control" id="exampleFormControlInput1" placeholder="Tuliskan Judul">
+                                <label class="form-label">Isi Berita</label>
+                                <input type="text" name="body" class="form-control" placeholder="Tulis isi berita">
                             </div>
 
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nama Mahasiswa Peraih</label>
-                                <input type="email" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Tuliskan Nama Mahasiswa Peraih">
-                            </div>
-
-                            <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                            <textarea class="form-control" name="deskripsi" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <label class="form-label">Deskripsi</label>
+                            <textarea class="form-control" name="deskripsi"></textarea>
                             </div>
                             
                             <p>
@@ -34,6 +31,7 @@
                               <input type="date" name="date" id="date">
                             </p>
                             <button type="submit" class="btn btn-success">Simpan</button>
+                        </form>
                         </div>
                     </div>
                 </div>

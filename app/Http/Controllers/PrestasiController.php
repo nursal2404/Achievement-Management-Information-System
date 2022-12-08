@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Prestasi;
 use App\Models\Lomba;
 use Illuminate\Http\Request;
+use PDF;
 use Illuminate\Support\Facades\Auth;
 
 class PrestasiController extends Controller
@@ -61,8 +62,6 @@ class PrestasiController extends Controller
         return redirect()->route('prestasi')->with('sukses','Data Berhasil Dihapus');
     }
 
-    
-  
     public function perolehan_prestasi($id)
     {
         $lomba = Lomba::find($id);
@@ -86,8 +85,23 @@ class PrestasiController extends Controller
              ]
         );
             return redirect()->route('lomba')->with('sukses','Prestasi Dikonfirmasi');
-    } 
+    }
+    
+    public function download(){
+        $kejuaraan = Prestasi::all();
+        $pdf = PDF::loadview('data_prestasi_pdf' , compact(['kejuaraan']));
+        $pdf->setPaper('A4', 'potrait');
+        return $pdf->download('Data-Prestasi.pdf');
+    }
  // End Route Admin
+
+ public function user_download(){
+    $kejuaraan = Prestasi::where("name", Auth::user()->name)->get();
+    $pdf = PDF::loadview('data_prestasi_pdf' , compact(['kejuaraan']));
+    $pdf->setPaper('A4', 'potrait');
+    return $pdf->download('Data-Prestasi.pdf');
+}
+ 
          
 }
 

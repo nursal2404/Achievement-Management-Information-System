@@ -12,4 +12,5 @@ class Prestasi extends Model
     protected $fillable = ['name','npm','jurusan','juara','lomba','penyelenggara','tingkat','tanggal'];
 
     public $sortable = ['name', 'npm' , 'jurusan' , 'tingkat' , 'tanggal'];
+
 }

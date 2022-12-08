@@ -14,7 +14,7 @@
             <div class="col-lg-12 mb-4">
                 <div class="card">
                     <div class="card-header">
-                        <form class="row g-3"  action="{{ route('add_proses_user.store') }}" method="POST" enctype="multipart/form-data">
+                        <form class="row g-3" action="{{ route('user_update_lomba' , ['id' => $lomba->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group col-12 mb-3">
                             <div class="input-group-prepend">
@@ -72,7 +72,7 @@
                     </div>
                         
                         <div class="d-flex justify-content-center mb-4">
-                            <button type="submit" class="btn btn-primary">Daftarkan</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>                
                     
                 </div>

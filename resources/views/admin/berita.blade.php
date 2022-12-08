@@ -13,7 +13,7 @@
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="table-responsive p-3">
-                  <a href="/tambahkan_berita"button type="button" class="btn btn-success mb-3">Tambah</button>
+                  <a href="/add_berita"button type="button" class="btn btn-success mb-3">Tambah</button>
                     <i class="fa-solid fa-newspaper"></i>
                   </a>
                   @if (session('sukses'))
@@ -46,10 +46,33 @@
                             Lihat
                             </button>
                           </a>
-                          <a href="#"><button type="button" class="btn btn-warning mr-2">Edit</button></a>
-                          <a href="#"><button type="button" class="btn btn-danger">Hapus</button></a>
+                          <a href="/edit_berita/{{ $post->id }}"><button type="button" class="btn btn-warning mr-2">Edit</button></a>
+                          <a href="berita/delete/{{ $post->id }}"><button type="button" class="btn btn-danger">Hapus</button></a>
                         </div>
                       </td>
+
+                      <!-- Modal Scrollable -->
+                      <div class="modal fade" id="modalDeskripsi">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Deskripsi</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <h5 class="font-weight-bold">{{ $post->title }}</h5>
+                              <p>{{ $post->deskripsi }}</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- End Modal Scrollable -->
+
                   @endforeach 
                     </tr>
                     </tbody>
@@ -62,26 +85,6 @@
         </div>
       <!-- End Card Manajemen Lomba -->
 
-        <!-- Modal Scrollable -->
-          <div class="modal fade" id="modalDeskripsi">
-            <div class="modal-dialog modal-dialog-scrollable">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Deskripsi</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <h5 class="font-weight-bold">{{ $post->title }}</h5>
-                  <p>{{ $post->deskripsi }}</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- End Modal Scrollable -->      
+              
 
   @endsection

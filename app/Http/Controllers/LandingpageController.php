@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+use App\Models\Post;
 use App\Models\Prestasi;
+use Illuminate\Http\Request;
 
 class LandingpageController extends Controller
 {
     public function index(){
-        return view('landingpage.home',[
+        $posts = Post::latest()->get();
+        return view('landingpage.home',compact (['posts']), [
             "title" => 'Beranda'
         ]);
     } 

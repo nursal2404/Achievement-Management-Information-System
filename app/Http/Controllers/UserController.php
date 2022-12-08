@@ -46,24 +46,6 @@ class UserController extends Controller
         ]);
     }
 
-    // public function upload_sertifikat(Request $request){
-    //     $data = $this->validate($request, [
-    //         'sertifkat_file'  => 'mimes:pdf,jpeg,jpg,png',
-    //     ]);
-
-        // $upload = $request->sertifikat_file;
-        // $nama_file = $upload->getClientOriginalName();
-
-
-        // $tampung_data = new Lomba;
-        // $tampung_data->sertifikat_file=$nama_file;
-
-        // $upload->move(public_path(). '/img' , $nama_file);
-        // $tampung_data->save();
-    //     dd($data);
-    //     $imageFile = time() . '-' . Auth::user()->name . '.';
-    // }
-
     public function user_prestasi()
     {
         $kejuaraan = Prestasi::where("name", Auth::user()->name)->get();

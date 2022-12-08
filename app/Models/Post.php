@@ -10,10 +10,6 @@ class Post extends Model
     use HasFactory;
 
     use HasFactory;
-    protected $fillable = ['title','body','deskripsi'];
-
-    public function prestasi()
-    {
-        return $this->belongsTo(Prestasi::class);
-    }
+    protected $fillable = ['title','body','deskripsi','photo'];
+    
 }

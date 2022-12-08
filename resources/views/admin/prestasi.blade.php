@@ -12,8 +12,11 @@
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="table-responsive p-3">
-                  <a href="/add_prestasi"button type="button" class="btn btn-success mb-3">Tambah</button>
+                  <a href="/add_prestasi" type="button" class="btn btn-success mb-3">Tambah
                     <i class="fa-solid fa-trophy"></i>
+                  </a>
+                  <a href="{{ route('download') }}" type="button" class="btn btn-outline-success mb-3" target="blank">Download
+                    <i class="bi bi-download"></i>
                   </a>
                   @if (session('sukses'))
                     <div class="alert alert-success">
@@ -49,6 +52,7 @@
                         <td>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</td>
                         <td>
                           <div class="btn-group">
+                            
                             <a href="/edit_prestasi/{{ $item->id }}"><button type="button" class="btn btn-warning mr-2">Edit</button></a>
                             <a href="prestasi/delete/{{ $item->id }}"><button type="button" class="btn btn-danger">Hapus</button></a>
                           </div>

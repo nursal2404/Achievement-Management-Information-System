@@ -16,6 +16,15 @@
                         <div class="card-body">
                             <form class="row g-3"  action="{{ route('admin_update_lomba' ,  ['id' => $lomba->id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nama</label>
+                                <input type="text" name="name" value="{{ $lomba->name }}" class="form-control" disabled>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">NPM</label>
+                                <input type="text" name="npm" value="{{ $lomba->npm }}" class="form-control" disabled>
+                            </div>
                             <div class="col-12 mb-3">
                                 <label for="namelomba" class="form-label">Nama Lomba</label>
                                 <input type="text" name="lomba" value="{{ $lomba->lomba }}" class="form-control">
@@ -47,7 +56,7 @@
                             </p>
 
                             <div class="col-lg-12">
-                                <label for="formFile" class="form-label">Upload Sertifikat</label>
+                                <label for="formFile" value="{{ $lomba->sertifikat_file }}" class="form-label">Upload Sertifikat</label>
                             </div>
                             
                             <div class="d-flex justify-content-center mb-4" style="margin-left: 13px;">

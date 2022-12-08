@@ -27,6 +27,13 @@
          <div class="col-lg-12">
            <div class="card mb-4">
              <div class="table-responsive p-3">
+             @if ($kejuaraan->count())
+             <a href="{{ route('download') }}" type="button" class="btn btn-outline-success mb-3" target="blank">Download
+              <i class="bi bi-download"></i>
+             </a>
+             @else
+
+             @endif
                <table class="table table-bordered" id="dataTable">
                  <thead class="table-primary">
                  <tr>
