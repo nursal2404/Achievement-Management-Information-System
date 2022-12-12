@@ -28,7 +28,7 @@
       <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
             <a href="/" class="navbar-brand p-0">
-                <h3 class="m-0 text-primary">SI Manajemen Prestasi</h3>
+                <h4 class="m-0 text-primary">SI Manajemen Prestasi</h4>
             </a>
 
             <div class="collapse navbar-collapse" id="Menu">
@@ -38,7 +38,11 @@
                   <li clas="nav-item"><a href="/postingan" class=" nav-link {{ ($title == "Berita") ? 'active' : ''}}">Berita</a></li>
                   <li clas="nav-item"><a href="data_prestasi" class=" nav-link {{ ($title == "Prestasi") ? 'active' : ''}}">Prestasi</a></li>
               </div>
+              @if(Auth::check())
+              <a href="{{url('keluar')}}" class="border border-primary py-2 px-4 ms-3">Logout</a>
+              @else
               <a href="login" class="border border-primary py-2 px-4 ms-3">Login</a>
+              @endif
             </div>
         </nav>
 

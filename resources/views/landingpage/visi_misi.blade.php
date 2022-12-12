@@ -23,6 +23,7 @@
         <div class="col-lg-12">
             <h1 class="fw-bold text-primary text-uppercase">Visi</h1>
             <p style="text-align: justify;">Menjadi SMART GOVERNANCE FACULTY dan unggul di bidang keteknikan pada tingkat ASEAN serta berperan aktif dalam pembangunan bangsa melalui Tri Dharma Perguruan Tinggi pada tahun 2025</p>
+            <hr style="border: 5px solid #06A3DA">
             <h1 class="fw-bold text-primary text-uppercase">Misi</h1>
             <div style="text-align: justify;">
                 <p>Meningkatkan kapabilitas dan kualitas SDM sehingga mampu bersaing di tingkat lokal, nasional, dan ASEAN di bidang rekayasa.</p>

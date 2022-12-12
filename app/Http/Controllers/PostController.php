@@ -24,11 +24,11 @@ class PostController extends Controller
 
     public function create(Request $request)
     {
-        $posts = $request->validate([
+        $validasi = $request->validate([
             'title' => 'required',
             'body' => 'required',
             'deskripsi' => 'required',
-            'photo' => 'required|mimes:png',
+            'photo' => 'required|mimes:png,jpeg,jpg',
         ]);
 
         $namafile = $request->photo->getClientOriginalName();
@@ -110,6 +110,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $posts = Post::find($id);
+        File::delete($posts->photo);
         $posts->delete();
         return redirect()->route('berita')->with('sukses','Berita Berhasil Dihapus');
     }

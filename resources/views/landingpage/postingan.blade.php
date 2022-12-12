@@ -19,11 +19,11 @@
 
     <div class="container-fluid py-5">
         <div class="container py-5">
-            <div class="row g-5">
+            <div class="row g-5 col-md-6-center">
 
             @if ($posts->count())
-                <div class="card mb-3 text-center">
-                    <img src="{{ asset ($posts[0]->photo) }}" class="card-img-top" alt="...">
+                <div class="mb-3 text-center">
+                    <img src="{{ asset ($posts[0]->photo) }}" class="card-img-top" style="width: 50%" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ $posts[0]->title }}</h5>
                         <p class="card-text">{{ $posts[0]->body }}</p>
@@ -47,7 +47,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $post->title }}</h5>
                                         <p class="card-text">{{ $post->body }}</p>
-                                        <p class="card-text"><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small></p>
+                                        <p class="card-text text-end"><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small></p>
                                     <a href="postingan/{{ $post->id }}" class="btn btn-primary">Read More</a>
                                 </div>
                             </div>  
@@ -56,7 +56,7 @@
                     </div>                   
                 </div>
                 {{ $posts->links() }}
-                </div>
+            </div>
         </div>
     </div>  
     

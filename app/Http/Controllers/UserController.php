@@ -48,6 +48,7 @@ class UserController extends Controller
 
     public function user_prestasi()
     {
+        // Jika name dari table prestasi = name dari table users
         $kejuaraan = Prestasi::where("name", Auth::user()->name)->get();
         return view('user.prestasi', compact(['kejuaraan']) , [
             "title" => 'Perolehan Prestasi'

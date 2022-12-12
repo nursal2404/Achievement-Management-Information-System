@@ -8,7 +8,7 @@
             <h1 class="h3 mb-0 text-gray-800">Tambahkan Berita</h1>
           </div>
 
-          <!-- Form Data Lomba ke Data Prestasi -->
+          <!-- Form Tambahkan Berita -->
           <div class="row justify-content-center">
             <div class=" col-xl-8 col-lg-8 col-md-9">
               <div class="card mb-4">
@@ -46,7 +46,7 @@
                 </div>
             </div>
           </div>  
-          <!-- End Form Data Lomba ke Data Prestasi -->
+          <!-- End Form Tambahkan Berita -->
         </div>
 
   @endsection

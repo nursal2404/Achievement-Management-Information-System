@@ -66,7 +66,7 @@
                         </div>
                         
                         <div class="d-flex justify-content-center mb-4" style="margin-left: 13px;">
-                            <input class="form" name="sertifikat_file" type="file" id="formFile">
+                            <input class="form" name="sertifikat" type="file" id="formFile">
                         </div>
 
                     </div>

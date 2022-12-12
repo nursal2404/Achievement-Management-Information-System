@@ -37,47 +37,87 @@
                         {{ session('sukses') }}
                     </div>
                     @endif
+                    @if (session('eror'))
+                      <div class="alert alert-danger">
+                        {{ session('eror') }}
+                      </div>
+                    @endif
                   <form action="{{ route('proses_register') }}" method="POST">
                   {{ csrf_field() }}
                     <div class="form-group">
                       <label>Nama</label>
-                      <input type="text" name="name" class="form-control" placeholder="Nama Lengkap">
+                      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" 
+                      value="{{ old('name') }}" placeholder="Nama Lengkap">
+                        @error('name')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                        @enderror
                     </div>
+
                     <div class="form-group">
-                        <label>Jurusan</label>
-                        <div class=""> 
-                            <select class="custom-select col-lg-12" name="jurusan">
-                              <option selected>Pilih Jurusan</option>
-                              <option value="Informatika">Informatika</option>
-                              <option value="Teknik Sipil">Teknik Sipil</option>
-                              <option value="Teknik Elektro">Teknik Elektro</option>
-                              <option value="Teknik Mesin">Teknik Mesin</option>
-                              <option value="Arsiterktur">Arsitektur</option>
-                              <option value="Sistem Informasi">Sistem Informasi</option>
-                            </select>
-                        </div>                             
+                      <label for="jurusan">Jurusan</label>
+                        <select name="jurusan" id="jurusan" class="form-control">
+                          <option>Pilih Jurusan</option>
+                          <option value="Informatika" @if(old('jurusan') == 'Informatika') selected @endif>Informatika</option>
+                          <option value="Teknik Sipil" @if(old('jurusan') == 'Teknik Sipil') selected @endif>Teknik Sipil</option>
+                          <option value="Teknik Elektro" @if(old('jurusan') == 'Teknik Elektro') selected @endif>Teknik Elektro</option>
+                          <option value="Teknik Mesin" @if(old('jurusan') == 'Teknik Mesin') selected @endif>Teknik Mesin</option>
+                          <option value="Arsiterktur" @if(old('jurusan') == 'Arsitektur') selected @endif>Arsitektur</option>
+                          <option value="Sistem Informasi" @if(old('jurusan') == 'Sistem Informasi') selected @endif>Sistem Informasi</option>
+                        </select>
+                            @error('jurusan')
+                            <div class="invalid-feedback">
+                              {{ $message }}
+                            </div>
+                            @enderror                             
                     </div>
+
                     <div class="form-group">
                         <label>Jenis Kelamin</label>
-                        <div class="div"> 
-                            <select class="custom-select col-lg-12" name="gender">
-                              <option selected>Pilih</option>
-                              <option value="Laki-Laki">Laki-Laki</option>
-                              <option value="Perempuan">Perempuan</option>
+                            <select name="gender" class="form-control">
+                              <option>Pilih</option>
+                              <option value="Laki-Laki" @if(old('gender') == 'Laki-Laki') selected @endif>Laki-Laki</option>
+                              <option value="Perempuan" @if(old('gender') == 'Perempuan') selected @endif>Perempuan</option>
                             </select>
-                        </div>                             
+                            @error('gender')
+                            <div class="invalid-feedback">
+                              {{ $message }}
+                            </div>
+                            @enderror                              
                     </div>
+
                     <div class="form-group">
                       <label>Email</label>
-                      <input type="email" name="email" class="form-control" placeholder="Email">
+                      <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" 
+                      value="{{ old('email') }}"placeholder="Email">
+                        @error('email')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                        @enderror    
                     </div>
+
                     <div class="form-group">
                       <label>Username</label>
-                      <input type="text" name="username" class="form-control" placeholder="Username(NPM)">
+                      <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" 
+                      value="{{ old('username') }}" placeholder="Username(NPM)">
+                        @error('email')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                        @enderror
                     </div>
+
                     <div class="form-group">
                       <label>Password</label>
-                      <input type="password" name="password" class="form-control" placeholder="Password">
+                      <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" 
+                      value="{{ old('password') }}" placeholder="Password">
+                        @error('email')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group d-flex justify-content-center mb-2">
                       <button type="submit" class="btn btn-primary ">Register</button>

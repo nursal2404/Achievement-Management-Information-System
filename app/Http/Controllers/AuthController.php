@@ -34,9 +34,7 @@ class AuthController extends Controller
                 return redirect()->intended('/');
             }
 
-        return redirect('login')
-                                ->withInput()
-                                ->withErrors(['login_gagal' => 'These credentials do not match our records.']);
+        return redirect('login')->with('eror','Masukkan username dan password yang benar');
     }
 
     public function logout(Request $request)
@@ -53,15 +51,26 @@ class AuthController extends Controller
     
     public function proses_register(Request $request)
     {
-        User::create([
-            'name' => $request->name,
-            'jurusan' => $request->jurusan,
-            'gender' => $request->gender,
-            'email' => $request->email,
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-        ]);
-        return redirect('login')->with('sukses','Berhasil Daftar');
+        $request->validate(
+            [
+                'name' => 'required',
+                'jurusan' => 'required',
+                'gender' => 'required',
+                'email' => 'required',
+                'username' => ['required', 'unique:users'],
+                'password' => 'required',
+            ]);
+
+            
+            User::create([
+                'name' => $request->name,
+                'jurusan' => $request->jurusan,
+                'gender' => $request->gender,
+                'email' => $request->email,
+                'username' => $request->username,
+                'password' => Hash::make($request->password),
+            ]);
+        return redirect('login')->with('sukses','Berhasil Daftar');       
     }
 
     public function forget_password(){

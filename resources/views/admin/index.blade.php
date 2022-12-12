@@ -107,7 +107,7 @@
             <div class="col-md-6">
               <div class="card ">
                 <div class="card-header">
-                  <h6 class="m-0 font-weight-bold text-primary">Data Lomba dan Prestasi</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Data Lomba dan Prestasi Perbulan</h6>
                 </div>
                 <div class="card-body">
                   <div class="chart-container">
@@ -122,6 +122,8 @@
 <!-- Script Grafik -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
+<!-- Grafik Data Keseluruhan -->
 <script>
   const ctx = document.getElementById('myBarChart');
   new Chart(ctx, {
@@ -138,6 +140,7 @@
           'rgb(75, 192, 192)',
           'rgb(54, 162, 235)',
         ],
+        borderWidth: 2
       },]
     },
     options: {
@@ -150,10 +153,12 @@
   });
 </script>
 
+
+<!-- Grafik Data Perbulan -->
 <script>
   const ctl = document.getElementById('LineChart');
   new Chart(ctl, {
-    type: 'line',
+    type: 'bar',
     data: {
       labels: ['Januari','Februari','Maret','April','Mei','Juni',
       'Juli','Agustus','September','Oktober','November','Desember'],
@@ -168,6 +173,7 @@
         borderColor: [
           'rgb(75, 192, 192)',
         ],
+        borderWidth: 2
       },
       {
         label: 'Prestasi',
@@ -180,6 +186,7 @@
         borderColor: [
           'rgb(54, 162, 235)',
         ],
+        borderWidth: 2
       }]
     },
     options: {

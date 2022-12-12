@@ -34,17 +34,33 @@
                   
                   <form action="{{url('proses_login')}}" method="POST">
                         {{ csrf_field() }}
-                      <!-- @csrf -->
                               @if (session('sukses'))
                                   <div class="alert alert-success">
                                       {{ session('sukses') }}
                                   </div>
                               @endif
+                              @if (session('eror'))
+                                  <div class="alert alert-danger">
+                                      {{ session('eror') }}
+                                  </div>
+                              @endif
                     <div class="form-group">
-                      <input type="text" name="username" class="form-control" placeholder="Username">
+                      <input type="text" name="username" value="{{ old('username') }}"
+                      class="form-control @error('username') is-invalid @enderror" placeholder="Username">
+                        @error('username')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" class="form-control mb-4" placeholder="Password">
+                      <input type="password" name="password" value="{{ old('password') }}"
+                      class="form-control mb-4 @error('password') is-invalid @enderror" placeholder="Password">
+                        @error('password')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group ml-3">
                       <a class="font-weight-bold small" href="/register">Lupa Password?</a>

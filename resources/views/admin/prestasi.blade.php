@@ -15,9 +15,13 @@
                   <a href="/add_prestasi" type="button" class="btn btn-success mb-3">Tambah
                     <i class="fa-solid fa-trophy"></i>
                   </a>
+                  @if ($kejuaraan->count())
                   <a href="{{ route('download') }}" type="button" class="btn btn-outline-success mb-3" target="blank">Download
                     <i class="bi bi-download"></i>
                   </a>
+                  @else
+
+                  @endif
                   @if (session('sukses'))
                     <div class="alert alert-success">
                         {{ session('sukses') }}

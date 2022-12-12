@@ -17,11 +17,11 @@
 
     <div class="container-fluid py-5">
         <div class="container py-5">
-            <div class="row g-5">
-            <h2 class="card-title text-center">{{ $posts->title }}</h2>
-
-
-                    <img src="{{ asset ($posts->photo) }}" class="card-img-top" alt="...">
+            <div class="row g-5 col-md-6-center">
+                <h2 class="card-title text-center">{{ $posts->title }}</h2>
+                <div class="mb-3 text-center">
+                    <img src="{{ asset ($posts->photo) }}" class="card-img-top" style="width: 50%" alt="...">
+                </div>
                     <div class="card-body">
                         <div>                        
                             <h3 class="card-text">{{ $posts->body }}</3>                            
@@ -29,10 +29,7 @@
                         <p class="card-text text-end"><small class="text-muted">
                                 {{ $posts->created_at->diffForHumans() }}
                             </small></p>
-
-                        <h4>{{ $posts->deskripsi }}</h4>
-                        
-                        
+                        <h4>{{ $posts->deskripsi }}</h4>                                           
                     </div>
 
   

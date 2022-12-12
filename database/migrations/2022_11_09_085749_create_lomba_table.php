@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('penyelenggara');
             $table->string('tingkat');
             $table->date('tanggal');
-            $table->string('sertifikat_file')->nullable();
+            $table->string('sertifikat')->nullable();
 
             $table->foreign('user_id')->references('username')->on('users');
 

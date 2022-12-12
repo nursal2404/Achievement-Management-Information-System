@@ -18,12 +18,24 @@
                         @csrf
                         <div class="col-12 mb-3">
                             <label for="namelomba" class="form-label">Nama Lomba</label>
-                            <input type="text" name="lomba" class="form-control">
+                            <input type="text" name="lomba" class="form-control @error('lomba') is-invalid @enderror" 
+                            value="{{ old('lomba') }}">
+                                @error('lomba')
+                                    <div class="invalid-feedback">
+                                    {{ $message }}
+                                    </div>
+                                @enderror
                         </div>
 
                         <div class="col-12 mb-3">
                             <label for="penyelenggara" class="form-label">Penyelenggara</label>
-                            <input type="text" name="penyelenggara" class="form-control">
+                            <input type="text" name="penyelenggara" class="form-control @error('penyelenggara') is-invalid @enderror" 
+                            value="{{ old('penyelenggara') }}">
+                                @error('penyelenggara')
+                                    <div class="invalid-feedback">
+                                    {{ $message }}
+                                    </div>
+                                @enderror
                         </div>
 
                         <div class="input-group col-12 mb-4">
@@ -51,7 +63,7 @@
                         </div>
                         
                         <div class="d-flex justify-content-center mb-4" style="margin-left: 13px;">
-                            <input class="form" name="sertifikat_file" type="file" id="formFile">
+                            <input class="form" name="sertifikat" type="file" id="formFile">
                         </div>
 
                     </div>

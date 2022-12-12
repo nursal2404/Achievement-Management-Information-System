@@ -7,6 +7,7 @@ use App\Models\Lomba;
 use App\Models\Prestasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -57,11 +58,48 @@ class AdminController extends Controller
         ]);
     }
 
-    public function profil()
+    public function profil($id)
     {
-        return view('admin.profil' , [
+        $data = User::find($id);
+        return view('admin.profil' , compact(['data']) , [
             "title" => 'Profil'
         ]);
+    }
+
+    public function update_profil(Request $request, $id){
+        $data = User::find($id);
+
+        $validasi = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'gender' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'profil'  => 'required|mimes:png',
+        ]);
+
+        // Ambil File Kemudian Hapus
+        $file = $data->profil;
+        // Impor Illuminate\Support\Facades\File
+        File::delete($file);
+        
+        $namafile = $request->profil->getClientOriginalName();
+        $request->profil->move('profil/', $namafile);
+
+            $cek = [
+                'email' => $request->email,
+                'gender' => $request->gender,
+                'username' => $request->username,
+                'password' => $request->password,
+                'profil' => 'profil/' . $namafile,
+            ];
+
+        $request['password'] = Hash::make($request->password);
+
+        if($data->update($cek)){
+            $data->save();
+        }
+        return redirect()->back()->with('sukses','Data Berhasil Diganti');
     }
 
     public function mahasiswa(Request $request)
@@ -113,6 +151,7 @@ class AdminController extends Controller
         $items = User::find($id);
         $lomba = Lomba::where('npm', $items['username'])->get();
 
+        $request['password'] = Hash::make($request->password);       
         $items->update($request->all());
 
         foreach ($lomba as $key => $value) {
@@ -136,14 +175,7 @@ class AdminController extends Controller
         $data->delete();
 
         return redirect()->route('mahasiswa')->with('sukses','Data Berhasil Dihapus');
-    }
-   
-    public function add_berita($id){
-        $kejuaraan = Prestasi::find($id);
-        return view ('tambahkan_berita' , compact('kejuaraan') , [
-            "title" => 'Manajemen Berita'
-        ]);
-    }
+    }   
 
 }
 

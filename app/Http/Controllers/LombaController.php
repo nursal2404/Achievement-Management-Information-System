@@ -6,6 +6,7 @@ use App\Models\Lomba;
 use App\Models\Prestasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class LombaController extends Controller
 {
@@ -28,6 +29,20 @@ class LombaController extends Controller
 
     public function admin_create_lomba(Request $request)
     {
+        $validasi = $request->validate([
+            'name' => 'required',
+            'npm' => 'required',
+            'jurusan' => 'required',
+            'lomba' => 'required',
+            'penyelenggara' => 'required',
+            'tingkat' => 'required',
+            'date' => 'required',
+            'sertifikat'  => 'required|mimes:png,pdf',
+        ]);
+
+        $namafile = time() . '_' . $request->name . '_' . $request->sertifikat->getClientOriginalName();
+        $request->sertifikat->move('sertifikat/', $namafile);
+
         Lomba::create([
             'user_id' => Auth::user()->username,
             'name' => $request->name,
@@ -37,6 +52,7 @@ class LombaController extends Controller
             'penyelenggara' => $request->penyelenggara,
             'tingkat' => $request->tingkat,
             'tanggal' => $request->date,
+            'sertifikat'=> 'sertifikat/' . $namafile,
         ]);
         return redirect()->route('lomba')->with('sukses','Lomba Berhasil Didaftarkan');;
     }
@@ -51,10 +67,44 @@ class LombaController extends Controller
     public function admin_update_lomba(Request $request, $id)
     {
         $lomba = Lomba::find($id);
-        $mahasiswa = User::where('username', $lomba['npm'])->get();
 
-        $lomba->update($request->all());
+        $validasi = $request->validate([
+            'name' => 'required',
+            'npm' => 'required',
+            'jurusan' => 'required',
+            'lomba' => 'required',
+            'penyelenggara' => 'required',
+            'tingkat' => 'required',
+            'date' => 'required',
+            'sertifikat'  => 'required|mimes:png,pdf',
+        ]);
+        
+        // Ambil File Kemudian Hapus
+        $file = $lomba->sertifikat;
+        // Impor Illuminate\Support\Facades\File
+        File::delete($file);
+        // 
 
+        $perubahan = $request->sertifikat;
+
+        $namafile = time() . '_' . $request->name . '_' . $perubahan->getClientOriginalName();
+        $perubahan->move('sertifikat/', $namafile);
+
+        $cek = [
+            'user_id' => Auth::user()->username,
+            'name' => $request->name,
+            'npm' => $request->npm,
+            'jurusan' => $request->jurusan,
+            'lomba' => $request['lomba'],
+            'penyelenggara' => $request['penyelenggara'],
+            'tingkat' => $request['tingkat'],
+            'tanggal' => $request['date'],
+            'sertifikat' => 'sertifikat/' . $namafile,
+        ];
+
+        if($lomba->update($cek)){
+            $lomba->save();
+        }
         return redirect()->route('lomba')->with('sukses','Data Berhasil Diedit');
     }
 
@@ -63,11 +113,15 @@ class LombaController extends Controller
 
         $kejuaraan = null;
 
-        if (Prestasi::where('lomba', $lomba['lomba'])->first() != null) {
-            $kejuaraan = Prestasi::where('lomba', $lomba['lomba'])->first();
+        if (Prestasi::where('lomba', $lomba['lomba'])
+                    ->where('name', $lomba['name'])->first() != null) {
+            $kejuaraan = Prestasi::where('lomba', $lomba['lomba'])->
+                                   where('name', $lomba['name'])->first();
+
             $kejuaraan->delete();
         }
 
+        File::delete($lomba->sertifikat);
         $lomba->delete();
         return redirect()->route('lomba')->with('sukses','Data Berhasil Dihapus');
     }
@@ -77,16 +131,16 @@ class LombaController extends Controller
 //Route Mahasiswa 
     public function user_create_lomba(Request $request)
     {
-        $data = $request->validate([
+        $validasi = $request->validate([
             'lomba' => 'required',
             'penyelenggara' => 'required',
             'tingkat' => 'required',
             'date' => 'required',
-            'sertifikat_file'  => 'required|mimes:png,pdf',
+            'sertifikat'  => 'required|mimes:png,pdf',
         ]);
 
-        $namafile = time() . '_' . Auth::user()->name . '_' . $request->sertifikat_file->getClientOriginalName();
-        $request->sertifikat_file->move('sertifikat/', $namafile);
+        $namafile = time() . '_' . Auth::user()->name . '_' . $request->sertifikat->getClientOriginalName();
+        $request->sertifikat->move('sertifikat/', $namafile);
 
         Lomba::create([
             'user_id' => Auth::user()->username,
@@ -97,14 +151,13 @@ class LombaController extends Controller
             'penyelenggara' => $request->penyelenggara,
             'tingkat' => $request->tingkat,
             'tanggal' => $request->date,
-            'sertifikat_file'=> 'sertifikat/' . $namafile,
+            'sertifikat'=> 'sertifikat/' . $namafile,
         ]);
         return redirect()->route('user_lomba')->with('sukses','Lomba Berhasil Didaftarkan');;
     }
 
     public function user_edit_lomba($id){
         $lomba = Lomba::where('name' , Auth::user()->name)->first();
-        // dd($lomba);
         return view('user.edit_lomba', compact(['lomba']) , [
             "title" => 'Manajemen Lomba'
         ]);
@@ -113,29 +166,25 @@ class LombaController extends Controller
     public function user_update_lomba(Request $request, $id)
     {
         $lomba = Lomba::where('name' , Auth::user()->name)->first();
-        if( $request->file('sertifikat_file') == ""){
-            
-            $cek = [
-            'user_id' => Auth::user()->username,
-            'name' => Auth::user()->name,
-            'npm' => Auth::user()->username,
-            'jurusan' => Auth::user()->jurusan,
-            'lomba' => $request['lomba'],
-            'penyelenggara' => $request['penyelenggara'],
-            'tingkat' => $request['tingkat'],
-            'tanggal' => $request['date'],
-            'sertifikat_file' => $request['sertifikat_file']
-            ];
-        }
-        else
-        {
-            $file = $lomba->sertifikat_file;
-            File::delete($file);
 
-            $perubahan = $request->sertifikat_file;
+        $validasi = $request->validate([
+            'lomba' => 'required',
+            'penyelenggara' => 'required',
+            'tingkat' => 'required',
+            'date' => 'required',
+            'sertifikat'  => 'required|mimes:png,pdf',
+        ]);
+        
+        // Ambil File Kemudian Hapus
+        $file = $lomba->sertifikat;
+        // Impor Illuminate\Support\Facades\File
+        File::delete($file);
+        // 
 
-            $namafile = time() . '_' . Auth::user()->name . '_' . $perubahan->getClientOriginalName();
-            $perubahan->move(public_path() . 'sertifikat/', $namafile);
+        $perubahan = $request->sertifikat;
+
+        $namafile = time() . '_' . Auth::user()->name . '_' . $perubahan->getClientOriginalName();
+        $perubahan->move('sertifikat/', $namafile);
 
             $cek = [
                 'user_id' => Auth::user()->username,
@@ -146,9 +195,9 @@ class LombaController extends Controller
                 'penyelenggara' => $request['penyelenggara'],
                 'tingkat' => $request['tingkat'],
                 'tanggal' => $request['date'],
-                'sertifikat_file' => 'sertifikat/' . $namafile,
+                'sertifikat' => 'sertifikat/' . $namafile,
             ];
-        }
+
 
         if($lomba->update($cek)){
             $lomba->save();
@@ -157,8 +206,9 @@ class LombaController extends Controller
     }
 
     public function user_delete_lomba($id){
-        $data = Lomba::find($id);
-        $data->delete();
+        $lomba = Lomba::find($id);
+        File::delete($lomba->sertifikat);
+        $lomba->delete();
         return redirect()->route('user_lomba')->with('sukses','Data Berhasil Dihapus');
     }
 //End Route Mahasiswa

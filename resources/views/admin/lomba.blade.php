@@ -49,7 +49,7 @@
                       <td>
                         <div class="btn-group">
                           <a href="perolehan_prestasi/{{ $item->id }}" class="btn btn-success mr-2"><i class="fas fa-check"></i></a>
-                          <a href="{{ $item->sertifikat_file }}"><button type="button" class="btn btn-info mr-2">Lihat</button></a>
+                          <a href="{{ $item->sertifikat }}" target="blank"><button type="button" class="btn btn-info mr-2">Lihat</button></a>
                           <a href="/edit_lomba/{{ $item->id }}"><button type="button" class="btn btn-warning mr-2">Edit</button></a>
                           <a href="lomba/delete/{{ $item->id }}"><button type="button" class="btn btn-danger">Hapus</button></a>
                         </div>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lomba extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id','name','npm','jurusan','lomba','penyelenggara','tingkat','tanggal','sertifikat_file'];
+    protected $fillable = ['user_id','name','npm','jurusan','lomba','penyelenggara','tingkat','tanggal','sertifikat'];
     // protected $table = "tb_lomba";
     public $timestamps = false;
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Prestasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LandingpageController extends Controller
 {
@@ -38,5 +39,12 @@ class LandingpageController extends Controller
         return view('landingpage.visi_misi',[
             "title" => 'Visi Misi'
         ]);
-    } 
+    }
+    
+    public function logout(Request $request)
+    {
+       $request->session()->flush();
+       Auth::logout();
+       return Redirect('/');
+    }
 }

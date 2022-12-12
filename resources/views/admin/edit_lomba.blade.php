@@ -18,16 +18,31 @@
                             @csrf
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Nama</label>
-                                <input type="text" name="name" value="{{ $lomba->name }}" class="form-control" disabled>
+                                <input type="text" name="name" value="{{ $lomba->name }}" class="form-control">
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">NPM</label>
-                                <input type="text" name="npm" value="{{ $lomba->npm }}" class="form-control" disabled>
+                                <input type="text" name="npm" value="{{ $lomba->npm }}" class="form-control">
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="namelomba" class="form-label">Nama Lomba</label>
                                 <input type="text" name="lomba" value="{{ $lomba->lomba }}" class="form-control">
+                            </div>
+
+                            <div class="input-group col-12 mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" >Jurusan</label>
+                            </div>
+                                <select class="custom-select" name="jurusan">
+                                    <option selected>{{ $lomba->jurusan }}</option>
+                                    <option value="Informatika">Informatika</option>
+                                    <option value="Teknik Sipil">Teknik Sipil</option>
+                                    <option value="Teknik Elektro">Teknik Elektro</option>
+                                    <option value="Teknik Mesin">Teknik Mesin</option>
+                                    <option value="Arsiterktur">Arsitektur</option>
+                                    <option value="Sistem Informasi">Sistem Informasi</option>
+                                </select>
                             </div>
 
                             <div class="col-12 mb-3">
@@ -52,15 +67,15 @@
 
                             <p class="col-lg-12 mb-3">
                                 <label for="date">Tanggal</label>
-                                <input type="date" name="tanggal" value="{{ $lomba->tanggal }}" id="date">
+                                <input type="date" name="date" value="{{ $lomba->tanggal }}" id="date">
                             </p>
 
                             <div class="col-lg-12">
-                                <label for="formFile" value="{{ $lomba->sertifikat_file }}" class="form-label">Upload Sertifikat</label>
+                                <label for="formFile" class="form-label">Upload Sertifikat</label>
                             </div>
                             
                             <div class="d-flex justify-content-center mb-4" style="margin-left: 13px;">
-                                <input class="form" name="sertifikat_file" type="file" id="formFile">
+                                <input class="form" name="sertifikat" type="file" id="formFile">
                             </div>
 
                         </div>

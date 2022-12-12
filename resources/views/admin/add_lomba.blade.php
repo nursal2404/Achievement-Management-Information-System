@@ -8,18 +8,18 @@
             <h1 class="h3 mb-0 text-gray-800">Tambah Lomba</h1>
           </div>
 
-          <!-- Form Daftarkan Lomba -->
+          <!-- Form Tambahkan Lomba -->
           <div class="row justify-content-center">
             <div class=" col-xl-8 col-lg-8 col-md-9">
               <div class="card mb-4">
-                <div class="table-responsive p-3">
+                <div class="p-3">
                     <div class="card-body">
                       @if (session('sukses'))
                       <div class="alert alert-success">
                           {{ session('sukses') }}
                       </div>
                       @endif
-                      <form class="row g-3" action="/lomba" method="POST">
+                      <form class="row g-3" action="/lomba" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Nama</label>
@@ -75,22 +75,27 @@
                                   <input type="date" name="date" value="DD-MM-YY" id="date">
                                 </p>
 
-                                <div >
-                            <button type="submit" class="ml-2 btn btn-primary">Daftarkan</button>
-                        </div> 
+                                <div class="col-lg-12">
+                                    <label for="formFile" class="form-label">Upload Sertifikat</label>
+                                </div>
+                                
+                                <div class="d-flex justify-content-center mb-4" style="margin-left: 13px;">
+                                    <input class="form" name="sertifikat" type="file" id="formFile">
+                                </div>
+           
+                    </div>
+
+                        <div class="d-flex justify-content-center mb-4">
+                          <button type="submit" class="ml-2 btn btn-primary">Tambah</button>
+                        </div>
+
                       </form>      
-                    </div>
-                    
-                    </div>
-                  </div>
-                </div>
+                </div>                    
               </div>
             </div>
           </div>
-
-          </div>
-          <!-- End Card Tambah Lomba -->
+          <!-- End Card Tambahkan Lomba -->
+        </div>
+          
       
   @endsection
-
-</html>

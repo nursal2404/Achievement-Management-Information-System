@@ -11,9 +11,13 @@
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="table-responsive p-3">
+                @if ($kejuaraan->count())
                 <a href="{{ route('user_download') }}" type="button" class="btn btn-outline-success mb-3" target="blank">Download
                   <i class="bi bi-download"></i>
                 </a>
+                @else
+
+                @endif
               <!-- Tabel Prestasi -->
               <div class="table-responsive">
               <table class="table table-bordered" id="dataTable">

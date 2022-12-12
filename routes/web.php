@@ -19,6 +19,7 @@ use App\Http\Controllers\LandingpageController;
     Route::get('visi_misi', [LandingpageController::class , 'visi_misi']);
     Route::get('data_prestasi', [LandingpageController::class , 'data_prestasi'])->name('data_prestasi.index');
     Route::get('pencarian_prestasi', [LandingpageController::class , 'pencarian_prestasi']);
+    Route::get('keluar', [LandingpageController::class , 'logout'])->name('keluar');
 // End
 
 // Route Autentifikasi Login
@@ -26,7 +27,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['cek_login:admin']], function () {
     // Route Admin
         Route::get('/admin',[AdminController::class, 'index'] )->name('admin');
-        Route::get('profil_admin',[AdminController::class , 'profil']);
+        Route::get('profil_admin/{id}',[AdminController::class , 'profil'])->name('admin_profil');
+        Route::post('update_profil_admin/{id}',[AdminController::class , 'update_profil'])->name('admin_update_profil');
 
         // Route Manajemen Mahasiswa
         Route::get('mahasiswa', [AdminController::class, 'mahasiswa'])->name('mahasiswa');
