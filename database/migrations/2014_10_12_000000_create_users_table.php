@@ -16,14 +16,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('gender');
             $table->string('jurusan')->nullable();
             $table->string('profil')->nullable();
             $table->string('username')->unique();
             $table->string('password');
             $table->enum('level',['admin','user'])->default('user');
-            // $table->integer('perolehan_prestasi')->nulllable()->default(0);
             $table->timestamps();
         });
     }

@@ -29,7 +29,7 @@
                         <p class="card-text text-end"><small class="text-muted">
                                 {{ $posts->created_at->diffForHumans() }}
                             </small></p>
-                        <h4>{{ $posts->deskripsi }}</h4>                                           
+                        <p style="text-align: justify; text-indent: 40px;">{{ $posts->deskripsi }}</p>                                           
                     </div>
 
   

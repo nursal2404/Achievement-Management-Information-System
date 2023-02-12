@@ -55,7 +55,7 @@
                     </div>
                     <div class="form-group">
                       <input type="password" name="password" value="{{ old('password') }}"
-                      class="form-control mb-4 @error('password') is-invalid @enderror" placeholder="Password">
+                      class="form-control mb @error('password') is-invalid @enderror" placeholder="Password">
                         @error('password')
                         <div class="invalid-feedback">
                           {{ $message }}
@@ -63,7 +63,7 @@
                         @enderror
                     </div>
                     <div class="form-group ml-3">
-                      <a class="font-weight-bold small" href="/register">Lupa Password?</a>
+                      <a class="font-weight-bold small" href="/forget_password">Lupa Password?</a>
                     </div> 
                       <button class="btn btn-primary btn-block mb-4">Login</button>
                   </form>

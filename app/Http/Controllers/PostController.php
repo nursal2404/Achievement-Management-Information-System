@@ -31,7 +31,7 @@ class PostController extends Controller
             'photo' => 'required|mimes:png,jpeg,jpg',
         ]);
 
-        $namafile = $request->photo->getClientOriginalName();
+        $namafile = time() . '_' . $request->photo->getClientOriginalName();
         $request->photo->move('file_berita/' , $namafile);
         
         Post::create(
@@ -42,7 +42,7 @@ class PostController extends Controller
                 'photo' => 'file_berita/' . $namafile,
             ]
         );
-        return redirect()->route('berita')->with('sukses','Berita Berhasil Dibuat');
+        return redirect()->route('berita')->with('sukses','Berita berhasil dibuat');
     }
 
     public function show()
@@ -89,7 +89,7 @@ class PostController extends Controller
 
             $perubahan = $request->photo;
 
-            $namafile = $perubahan->getClientOriginalName();
+            $namafile = time() . '_' . $perubahan->getClientOriginalName();
             $perubahan->move('file_berita/', $namafile);
 
             $cek = [
@@ -104,7 +104,7 @@ class PostController extends Controller
             $posts->save();
         }
         // $posts->update($request->all());
-        return redirect()->route('berita')->with('sukses','Berita Berhasil Diedit');
+        return redirect()->route('berita')->with('sukses','Berita berhasil diedit');
     }
 
     public function destroy($id)
@@ -112,6 +112,6 @@ class PostController extends Controller
         $posts = Post::find($id);
         File::delete($posts->photo);
         $posts->delete();
-        return redirect()->route('berita')->with('sukses','Berita Berhasil Dihapus');
+        return redirect()->route('berita')->with('sukses','Berita berhasil dihapus');
     }
 }

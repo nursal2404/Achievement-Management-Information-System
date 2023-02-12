@@ -16,7 +16,7 @@
                     <i class="fa-solid fa-trophy"></i>
                   </a>
                   @if ($kejuaraan->count())
-                  <a href="{{ route('download') }}" type="button" class="btn btn-outline-success mb-3" target="blank">Download
+                  <a href="{{ route('download') }}" id="pdf" type="button" onclick="myFunction()" class="btn btn-outline-success mb-3" target="blank">Download
                     <i class="bi bi-download"></i>
                   </a>
                   @else
@@ -76,5 +76,13 @@
 
   @endsection
 
+  <script>
+    function myFunction() {
+      // onlick agar button tidak menjadi undefined ketika di tekan
+      // open().print() membuka view kemudian print
+      document.getElementById("pdf").onclick = open('download').print();
+    }
+  </script>
+  
 </body>
 </html>

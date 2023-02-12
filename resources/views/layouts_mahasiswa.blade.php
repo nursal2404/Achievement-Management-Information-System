@@ -37,7 +37,7 @@
       </div>
 
       <li class="nav-item {{ ($title == "Manajemen Lomba") ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="user_lomba" 
+        <a class="nav-link collapsed" href="/user_lomba" 
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="fa-solid fa-medal"></i>
           <span>Manajemen Perlombaan</span>
@@ -45,7 +45,7 @@
       </li>
 
       <li class="nav-item {{ ($title == "Perolehan Prestasi") ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="user_prestasi" 
+        <a class="nav-link collapsed" href="/user_prestasi" 
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="fa-solid fa-trophy"></i>
           <span>Perolehan Prestasi</span>

@@ -103,3 +103,6 @@ Route::get('download', [PrestasiController::class, 'download'])->name('download'
 
 
 Route::get('forget_password', [AuthController::class , 'forget_password'])->name('forget_password');
+Route::post('/forget_password', [AuthController::class , 'send_request_reset'])->name('send_request_reset');
+Route::get('/password/reset{token}', [AuthController::class , 'reset_password'])->name('reset_password');
+Route::post('/password/reset', [AuthController::class , 'update_password'])->name('password_reset');

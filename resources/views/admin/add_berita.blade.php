@@ -18,15 +18,33 @@
                         @csrf
                           <div class="col-12 mb-3">
                               <label class="form-label">Judul</label>
-                              <input type="text" name="title"  class="form-control" placeholder="Tulis judul">
+                              <input type="text" name="title"  class="form-control @error('title') is-invalid @enderror" 
+                              value="{{ old('title') }}" placeholder="Tulis judul">
+                              @error('title')
+                              <div class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                              @enderror
                           </div>
                           <div class="col-12 mb-3">
                               <label class="form-label">Isi Berita</label>
-                              <input type="text" name="body"  class="form-control" placeholder="Tulis isi berita">
+                              <input type="text" name="body"  class="form-control @error('body') is-invalid @enderror" 
+                              value="{{ old('body') }}" placeholder="Tulis isi berita">
+                              @error('body')
+                              <div class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                              @enderror
                           </div>
                           <div class="col-12 mb-3">
                             <label class="form-label">Deskripsi</label>
-                            <textarea name="deskripsi" class="form-control" rows="3" placeholder="Tulis deskripsi"></textarea>
+                            <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" rows="3" 
+                            value="{{ old('deskripsi') }}" placeholder="Tulis deskripsi"></textarea>
+                            @error('deskripsi')
+                              <div class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                              @enderror
                           </div>
 
                           <div class="col-lg-12">
@@ -34,7 +52,13 @@
                           </div>
                           
                           <div class="d-flex justify-content-center mb-4" style="margin-left: 13px;">
-                              <input class="form" name="photo" type="file" id="formFile">
+                              <input class="form-control @error('photo') is-invalid @enderror" 
+                              name="photo" type="file" id="formFile">
+                              @error('photo')
+                              <div class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                              @enderror
                           </div>
                           
                           </div>

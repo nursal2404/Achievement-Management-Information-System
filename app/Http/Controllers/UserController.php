@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function user_lomba()
     {
-        $lomba = Lomba::where("name", Auth::user()->name)->get();
+        $lomba = Lomba::where("name", 'like', "%" . Auth::user()->name . "%")->get();
         return view('user.lomba', compact(['lomba']) , [
             "title" => 'Manajemen Lomba'
         ]);
@@ -49,7 +49,7 @@ class UserController extends Controller
     public function user_prestasi()
     {
         // Jika name dari table prestasi = name dari table users
-        $kejuaraan = Prestasi::where("name", Auth::user()->name)->get();
+        $kejuaraan = Prestasi::where("name", 'like', "%" . Auth::user()->name . "%")->get();
         return view('user.prestasi', compact(['kejuaraan']) , [
             "title" => 'Perolehan Prestasi'
         ]);

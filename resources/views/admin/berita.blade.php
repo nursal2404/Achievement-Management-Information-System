@@ -27,7 +27,6 @@
                       <th scope="col">No</th>
                       <th scope="col">Judul</th>
                       <th scope="col">Isi</th>
-                      <th scope="col">Deskripsi</th>
                       <th scope="col" class="text-center">Aksi</th>
                     </tr>
                   </thead>
@@ -37,12 +36,11 @@
                       <th scope="row">{{ $index + 1 }}</th>
                       <td>{{ $post->title }}</td>
                       <td>{{ $post->body }}</td>
-                      <td>{{ $post->deskripsi }}</td>
                       <td>
                         <div class="btn-group d-flex justify-content-center">
                           <a>
                             <button type="button" data-toggle="modal" 
-                              data-target="#modalDeskripsi" class="btn btn-primary mr-2">
+                              data-target="#modalDeskripsi_{{ $post->id }}" class="btn btn-primary mr-2">
                             Lihat
                             </button>
                           </a>
@@ -52,7 +50,7 @@
                       </td>
 
                       <!-- Modal Scrollable -->
-                      <div class="modal fade" id="modalDeskripsi">
+                      <div class="modal fade" id="modalDeskripsi_{{ $post->id }}">
                         <div class="modal-dialog modal-dialog-scrollable">
                           <div class="modal-content">
                             <div class="modal-header">

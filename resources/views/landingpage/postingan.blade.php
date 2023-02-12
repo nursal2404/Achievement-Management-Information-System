@@ -41,15 +41,18 @@
                 <div class="container">
                     <div class="row">
                     @foreach ($posts->skip(1) as $post)
-                        <div class="col-md-4 text-center">
+                        <div class="col-md-4 text-center d-flex align-items-stretch">
                             <div class="card">   
                                 <img src="{{ asset ($post->photo) }}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $post->title }}</h5>
                                         <p class="card-text">{{ $post->body }}</p>
-                                        <p class="card-text text-end"><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small></p>
-                                    <a href="postingan/{{ $post->id }}" class="btn btn-primary">Read More</a>
+                                        <p class="card-text text-end"><small class="text-muted">{{ $post->created_at->diffForHumans() }}</small></p>                                  
                                 </div>
+                                <div class="d-flex justify-content-center">
+                                    <a href="postingan/{{ $post->id }}" class="btn btn-primary mb-3" style="width: 30%;">Read More</a>
+                                </div>
+
                             </div>  
                         </div>
                     @endforeach                                

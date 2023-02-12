@@ -86,20 +86,20 @@ class AdminController extends Controller
         $namafile = $request->profil->getClientOriginalName();
         $request->profil->move('profil/', $namafile);
 
+        $request['password'] = Hash::make($request->password);
+
             $cek = [
                 'email' => $request->email,
                 'gender' => $request->gender,
                 'username' => $request->username,
-                'password' => $request->password,
+                'password' => $request['password'],
                 'profil' => 'profil/' . $namafile,
-            ];
-
-        $request['password'] = Hash::make($request->password);
+            ];       
 
         if($data->update($cek)){
             $data->save();
         }
-        return redirect()->back()->with('sukses','Data Berhasil Diganti');
+        return redirect()->back()->with('sukses','Data berhasil diganti');
     }
 
     public function mahasiswa(Request $request)
@@ -117,13 +117,22 @@ class AdminController extends Controller
     }
 
     public function create_mahasiswa(Request $request){
-        $this->validate($request, [
+        $request->validate([
             'name' => 'required',
             'jurusan' => 'required',
             'gender' => 'required',
-            'email' => 'required',
-            'username' => 'required',
+            'email' => ['required', 'unique:users'],
+            'username' => ['required', 'unique:users', 'regex:/G1/'],
             'password' => 'required|min:6|max:10',
+        ],[
+            'name.required' => 'Nama harus diisi',
+            'jurusan.required' => 'Jurusan harus diisi',
+            'gender.required' => 'Jenis Kelamin harus diisi',
+            'email.required' => 'Email harus diisi',
+            'username.required' => 'Username harus diisi',
+            'username.unique' => 'Username sudah ada',
+            'username.regex' => 'Username harus awalan G1',
+            'password.required' => 'Password harus diisi',
         ]);
 
         User::create([
@@ -135,7 +144,7 @@ class AdminController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('mahasiswa')->with('sukses','Data Berhasil Ditambahkan');
+        return redirect()->route('mahasiswa')->with('sukses','Data berhasil ditambahkan');
     }
 
     public function edit_mahasiswa($id)
@@ -150,6 +159,24 @@ class AdminController extends Controller
     {
         $items = User::find($id);
         $lomba = Lomba::where('npm', $items['username'])->get();
+        
+        $request->validate([
+            'name' => 'required',
+            'jurusan' => 'required',
+            'gender' => 'required',
+            'email' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+        ],[
+            'name.required' => 'Nama harus diisi',
+            'jurusan.required' => 'Jurusan harus diisi',
+            'gender.required' => 'Jenis Kelamin harus diisi',
+            'email.required' => 'Email harus diisi',
+            'username.required' => 'Username harus diisi',
+            'password.required' => 'Password harus diisi',
+        ]);
+
+
 
         $request['password'] = Hash::make($request->password);       
         $items->update($request->all());
@@ -160,7 +187,7 @@ class AdminController extends Controller
             ]);
         }
 
-        return redirect()->route('mahasiswa')->with('sukses','Data Berhasil DiEdit');
+        return redirect()->route('mahasiswa')->with('sukses','Data berhasil diedit');
     }
     
     public function delete_mahasiswa($id){
@@ -174,7 +201,7 @@ class AdminController extends Controller
 
         $data->delete();
 
-        return redirect()->route('mahasiswa')->with('sukses','Data Berhasil Dihapus');
+        return redirect()->route('mahasiswa')->with('sukses','Data berhasil dihapus');
     }   
 
 }

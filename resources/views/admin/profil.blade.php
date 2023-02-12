@@ -40,12 +40,18 @@
                       <div class="row g-3">
                         <div class="col-md-12 mb-3">
                             <label  class="form-label">Nama</label>
-                            <input type="text" name="name" class="form-control mb-3" value="{{ $data->name}}">
+                            <input type="text" name="name" class="form-control mb-3 @error('name') is-invalid @enderror"
+                            value="{{ old('name', $data->name) }}">
+                                @error('name')
+                                <div class="invalid-feedback">
+                                  {{ $message }}
+                                </div>
+                                @enderror  
 
                             <div class="form-group">
                               <label>Email</label>
                               <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" 
-                              value="{{ $data->email }}">
+                              value="{{ old('email', $data->email) }}">
                                 @error('email')
                                 <div class="invalid-feedback">
                                   {{ $message }}
@@ -56,7 +62,7 @@
                             <div class="form-group">
                               <label>Jenis Kelamin</label>
                                   <select name="gender" class="form-control">
-                                    <option>{{ $data->gender }}</option>
+                                    <option value="{{ $data->gender }}">{{ $data->gender }}</option>
                                     <option value="Laki-Laki" @if(old('gender') == 'Laki-Laki') selected @endif>Laki-Laki</option>
                                     <option value="Perempuan" @if(old('gender') == 'Perempuan') selected @endif>Perempuan</option>
                                   </select>
@@ -70,7 +76,7 @@
                             <div class="form-group">
                               <label>Username</label>
                               <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" 
-                              value="{{ $data->username }}">
+                              value="{{ old('username', $data->username) }}">
                                 @error('email')
                                 <div class="invalid-feedback">
                                   {{ $message }}
@@ -81,7 +87,7 @@
                             <div class="form-group">
                               <label>Password</label>
                               <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" 
-                              value="{{ $data->password }}">
+                              value="{{ old('password', $data->password) }}">
                                 @error('email')
                                 <div class="invalid-feedback">
                                   {{ $message }}

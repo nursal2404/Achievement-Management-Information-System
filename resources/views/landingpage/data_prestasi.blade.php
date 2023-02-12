@@ -28,9 +28,9 @@
            <div class="card mb-4">
              <div class="table-responsive p-3">
              @if ($kejuaraan->count())
-             <a href="{{ route('download') }}" type="button" class="btn btn-outline-success mb-3" target="blank">Download
-              <i class="bi bi-download"></i>
-             </a>
+             <a href="{{ route('download') }}" id="pdf" type="button" onclick="myFunction()" class="btn btn-outline-success mb-3" target="blank">Download
+                <i class="bi bi-download"></i>
+              </a>
              @else
 
              @endif
@@ -77,7 +77,13 @@
       </div>
 
 
-
+      <script>
+        function myFunction() {
+          // onlick agar button tidak menjadi undefined ketika di tekan
+          // open().print() membuka view kemudian print
+          document.getElementById("pdf").onclick = open('download').print();
+        }
+      </script>
 
 @endsection
 

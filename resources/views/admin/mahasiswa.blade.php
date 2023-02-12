@@ -21,13 +21,13 @@
                     </div>
                   @endif
                   <table class="table table-bordered" id="dataTable">
-                    <thead class="table-primary">
+                    <thead class="table-primary text-center">
                     <tr>
                       <th scope="col">No</th>
                       <th scope="col">Nama</th>
                       <th scope="col">Jurusan</th>
                       <th scope="col">Email</th>
-                      <th scope="col">Username</th>
+                      <th scope="col">NPM</th>
                       <th scope="col">Jenis Kelamin</th>  
                       <th scope="col" class="text-center">Aksi</th>
                     </tr>
@@ -46,7 +46,7 @@
                           <div class="btn-group">
                             <a href="/edit_mahasiswa/{{ $item->id }}" class="btn btn-warning mr-2">Edit</a>
                             <button type="button" class="btn btn-danger" 
-                              data-toggle="modal" data-target="#deleteMahasiswa">
+                              data-toggle="modal" data-target="#deleteMahasiswa_{{ $item->id }}">
                               Hapus
                             </button>
                           </div>
@@ -54,7 +54,7 @@
                       </td>
 
                         <!-- Modal Hapus Mahasiswa -->
-                        <div class="modal fade" id="deleteMahasiswa">
+                        <div class="modal fade" id="deleteMahasiswa_{{ $item->id }}">
                           <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                               <div class="modal-header">

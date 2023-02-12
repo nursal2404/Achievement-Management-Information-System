@@ -56,9 +56,9 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="jurusan">Jurusan</label>
-                        <select name="jurusan" id="jurusan" class="form-control">
-                          <option>Pilih Jurusan</option>
+                      <label>Jurusan</label>
+                        <select name="jurusan" class="form-control @error('jurusan') is-invalid @enderror">
+                          <option value="">Pilih Jurusan</option>
                           <option value="Informatika" @if(old('jurusan') == 'Informatika') selected @endif>Informatika</option>
                           <option value="Teknik Sipil" @if(old('jurusan') == 'Teknik Sipil') selected @endif>Teknik Sipil</option>
                           <option value="Teknik Elektro" @if(old('jurusan') == 'Teknik Elektro') selected @endif>Teknik Elektro</option>
@@ -75,8 +75,8 @@
 
                     <div class="form-group">
                         <label>Jenis Kelamin</label>
-                            <select name="gender" class="form-control">
-                              <option>Pilih</option>
+                            <select name="gender" class="form-control  @error('gender') is-invalid @enderror">
+                              <option value="">Pilih</option>
                               <option value="Laki-Laki" @if(old('gender') == 'Laki-Laki') selected @endif>Laki-Laki</option>
                               <option value="Perempuan" @if(old('gender') == 'Perempuan') selected @endif>Perempuan</option>
                             </select>
@@ -102,7 +102,7 @@
                       <label>Username</label>
                       <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" 
                       value="{{ old('username') }}" placeholder="Username(NPM)">
-                        @error('email')
+                        @error('username')
                         <div class="invalid-feedback">
                           {{ $message }}
                         </div>
@@ -113,7 +113,7 @@
                       <label>Password</label>
                       <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" 
                       value="{{ old('password') }}" placeholder="Password">
-                        @error('email')
+                        @error('password')
                         <div class="invalid-feedback">
                           {{ $message }}
                         </div>
